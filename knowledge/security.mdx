@@ -1,0 +1,97 @@
+---
+title: Security
+description: How AdCue protects accounts, OAuth credentials, and MCP access.
+---
+
+# Security
+
+Connecting an advertising account requires trust. This page summarizes what AdCue accesses, how credentials are stored, and how you stay in control.
+
+## Principles
+
+| Principle | Practice |
+|-----------|----------|
+| Minimal permissions | Login and Ads OAuth are separate; Ads uses the `adwords` scope only |
+| Encryption | Tokens encrypted at rest; TLS in transit |
+| No secret logging | Tokens, client secrets, and developer tokens must never appear in logs or support tickets |
+| You stay in control | Disconnect ads, revoke keys, or delete your account |
+
+## Authentication layers
+
+### Website login (Auth0)
+
+- Sign-in uses **Auth0** Universal Login.
+- AdCue requires a stable subject, email, and verified email.
+- The browser does not receive raw Auth0 access tokens for casual inspection; the server binds the session to an internal user.
+
+### Google Ads OAuth (separate)
+
+- Initiated from [Connections](https://adcue.app/app/connections) via AdCue’s Ads connect routes.
+- Scope: `https://www.googleapis.com/auth/adwords`
+- **Does not** grant Gmail, Drive, Calendar, or unrelated Google APIs.
+- Stored refresh tokens are encrypted and used only for Ads API calls on your behalf.
+
+### MCP client access
+
+- Remote MCP at `https://mcp.adcue.app/mcp`
+- Clients authenticate as your AdCue user (OAuth and/or API keys depending on product path)
+- The MCP server injects tenant identity; clients should not pass raw multi-tenant credentials
+
+## Google Ads permissions
+
+| Scope | Allows | Does not allow |
+|-------|--------|----------------|
+| `https://www.googleapis.com/auth/adwords` | Read and manage Google Ads entities you authorize through tools | Gmail, Drive, YouTube personal data, Calendar, unrelated Google products |
+
+## MCP safety (product rules)
+
+See the full [Safety model](/mcp/safety). Highlights:
+
+- Creates land **PAUSED**
+- Destructive `remove_*` requires `confirm_delete: true`
+- `customer_id` is always a string
+
+## What we store (product data)
+
+| Data | Stored? | Notes |
+|------|---------|-------|
+| Encrypted Google Ads tokens | Yes | Until disconnect or account deletion |
+| Connected customer IDs / primary account | Yes | For routing tools |
+| Subscription / plan fields | Yes | Via Creem webhooks when billing is active |
+| Raw campaign dumps | No long-term bulk store for docs purposes | Tools fetch what they need per request |
+| Personal non-Ads Google data | No | Not in Ads scope |
+
+Exact retention for analytics features may evolve; account deletion remains the hard stop for product-owned user rows.
+
+## Infrastructure (high level)
+
+| Component | Notes |
+|-----------|-------|
+| Website / app | Hosted on Vercel |
+| MCP | Hosted as a remote service at `mcp.adcue.app` |
+| Database | Postgres for users, connections, subscriptions |
+| Billing | **Creem** checkout, portal, and webhooks |
+
+## Account deletion {#account-deletion}
+
+From **Settings**, permanent delete:
+
+- Removes the AdCue user and cascaded product rows (connections, MCP entitlements owned by that user, plans, related app state)
+- Best-effort revokes the stored Google Ads refresh token
+- Ends the website session
+- Does **not** delete Auth0 tenant identities via Management API, and does not remove independent waitlist signups
+
+Signing in again creates a **new** user and onboarding path.
+
+## Reporting security issues
+
+Email [support@adcue.app](mailto:support@adcue.app) with subject **Security Report**.
+
+Please allow reasonable time for investigation before public disclosure. Do not include live tokens or private keys in the report body if a redacted reproduction is possible.
+
+## Related
+
+- [Connect Google Ads](/connect/google-ads)
+- [Safety model](/mcp/safety)
+- [FAQ](/knowledge/faq)
+- Privacy policy: [adcue.app/privacy](https://adcue.app/privacy)

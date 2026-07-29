@@ -1,72 +1,80 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "AdCue Docs",
+  "description": "Documentation for AdCue — AI advertising audit, optimization, and MCP for Google Ads.",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#070B24",
+    "light": "#2F6F5E",
+    "dark": "#070B24"
   },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
+  "favicon": "/favicon.png",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/logo-light.svg",
+    "dark": "/logo/logo-dark.svg",
+    "href": "https://adcue.app"
+  },
+  "seo": {
+    "metatags": {
+      "canonical": "https://docs.adcue.app"
+    }
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "App",
+        "href": "https://adcue.app/app"
+      },
+      {
+        "label": "Changelog",
+        "href": "https://adcue.app/changelog"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
     ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "website": "https://adcue.app"
     }
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get started",
+        "pages": [
+          "introduction",
+          "quickstart",
+          "create-account"
+        ]
+      },
+      {
+        "group": "Connect",
+        "pages": [
+          "connect/google-ads",
+          "connect/mcp-setup"
+        ]
+      },
+      {
+        "group": "Product",
+        "pages": [
+          "product/usage-billing"
+        ]
+      },
+      {
+        "group": "MCP & tools",
+        "pages": [
+          "mcp/overview",
+          "mcp/tools",
+          "mcp/safety"
+        ]
+      },
+      {
+        "group": "Knowledge",
+        "pages": [
+          "knowledge/security",
+          "knowledge/pricing",
+          "knowledge/faq"
+        ]
+      }
+    ]
   }
 }

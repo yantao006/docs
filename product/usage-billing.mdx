@@ -1,0 +1,58 @@
+---
+title: Usage & Billing
+description: Outline of AdCue Usage & Billing in the app shell (Creem-backed).
+---
+
+# Usage & Billing
+
+<Note>
+**Outline (Doc-D4).** Full step-by-step billing how-tos and screenshots ship after the Creem-backed product UX is frozen. This page describes what exists and where to click without inventing unfinished flows.
+</Note>
+
+## Where it lives
+
+Authenticated home:
+
+[https://adcue.app/app](https://adcue.app/app)
+
+The app shell’s primary home is **Usage & Billing** — plan status, quota summary, and upgrade / manage actions when billing is configured.
+
+## Billing vendor
+
+AdCue uses **Creem** for:
+
+- Checkout (upgrade to a paid plan)
+- Customer portal (payment method, cancel, invoices as Creem provides)
+- Webhooks that sync subscription state into AdCue
+
+Do **not** expect Stripe Customer Portal or Stripe Checkout links in current product docs.
+
+## What you can do today (when enabled)
+
+| Action | Entry |
+|--------|--------|
+| See current plan / status | `/app` Usage & Billing |
+| Start upgrade checkout | Upgrade controls on `/app` (Creem checkout redirect) |
+| Manage subscription | Customer portal entry when a Creem customer exists |
+| See tool / quota signals | Usage cards on `/app` and MCP `get_usage_status` |
+
+If billing environment variables or product IDs are not configured in a given deployment, checkout fails closed (no fake paid success).
+
+## Plans (pointer)
+
+High-level plan families and free-tier intent live on [Pricing](/knowledge/pricing). Exact prices, trial length, and matrix copy will be published when the commercial plan freezes.
+
+## Related product routes
+
+| Route | Role |
+|-------|------|
+| [Connections](https://adcue.app/app/connections) | Google Ads OAuth |
+| [Setup](https://adcue.app/app/setup) | AI client guides |
+| [Keys](https://adcue.app/app/keys) | Agent API keys (`sk_live_`) — create, copy once, revoke |
+| [Settings](https://adcue.app/app/settings) | Profile, sign out, account deletion |
+
+## Next
+
+- [Pricing](/knowledge/pricing)
+- [FAQ — billing](/knowledge/faq#billing--plans)
+- [Security](/knowledge/security)

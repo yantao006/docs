@@ -1,0 +1,71 @@
+---
+title: Connect Google Ads
+description: Link a Google Ads account to AdCue from Connections so MCP and the app can use it.
+---
+
+# Connect Google Ads
+
+Link Google Ads so AdCue (website and MCP clients sharing your account) can read performance and run approved tools.
+
+## Before you start
+
+- An [AdCue account](/create-account)
+- A Google identity with access to the Google Ads customers you manage
+- Admin or standard access on those customers (or a manager identity with **direct** access)
+
+<Note>
+Manager (MCC) identities are supported. Linked client accounts are **not** listed automatically unless the Google identity also has direct access to them.
+</Note>
+
+## Where to connect
+
+Open **Connections** in the app shell:
+
+[https://adcue.app/app/connections](https://adcue.app/app/connections)
+
+You can also start connection flows from Setup or product prompts that deep-link to Connections.
+
+## How to connect
+
+1. Sign in to AdCue and open [Connections](https://adcue.app/app/connections).
+2. Choose **Connect Google Ads**. Confirm the read-only email hint (expected identity, not a password field).
+3. Select **Connect**. On Google’s consent screen, pick the identity that can access your ad accounts and approve the **Google Ads** scope (`https://www.googleapis.com/auth/adwords`).
+4. If several directly accessible customers appear, pick a **primary** account. A single account is selected automatically.
+5. Confirm the panel shows connected status, primary account, and accessible account count.
+
+Website and MCP sessions share the **same** stored connection — you do not connect twice for each client.
+
+## What AdCue can and cannot do
+
+| Can | Cannot without you |
+|-----|--------------------|
+| Read campaign structure and metrics you authorize | Spend budget on its own |
+| Create or change entities **only** when you approve a write tool | Access Gmail, Drive, Calendar, or non-Ads Google data |
+| Pause / resume / remove when tools are invoked with confirmation | Bypass destructive confirm flags |
+
+Creates still land **PAUSED**. See [Safety model](/mcp/safety).
+
+## After connecting
+
+- List accounts and campaigns from an AI client or future product surfaces
+- Reconnect with another Google identity if you picked the wrong one
+- **Refresh accounts** from the connection panel after infrastructure fixes (no full OAuth required when refresh tokens remain valid)
+- Disconnect at any time from Connections / Settings
+
+## Troubleshooting
+
+| Problem | What to try |
+|---------|-------------|
+| No accounts found | Reconnect with the Google identity that owns or has direct access to the customer |
+| Access denied | Ask the account owner for admin/standard access in Google Ads |
+| Connected but discovery empty | Use **Refresh accounts**; ensure Google Ads API access is healthy on AdCue’s side (support can check service status) |
+| Consent screen does not open | Allow pop-ups; retry Connect; try another browser |
+| Wrong primary account | Select another primary from the connection panel |
+
+Still stuck? Email [support@adcue.app](mailto:support@adcue.app) with the step that failed (do not send tokens or secrets).
+
+## Next
+
+- [Connect an AI client](/connect/mcp-setup)
+- [How MCP works](/mcp/overview)
+- [Quickstart](/quickstart)

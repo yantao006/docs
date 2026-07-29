@@ -1,0 +1,64 @@
+---
+title: Create account
+description: Sign up for AdCue with Auth0 and open the app shell.
+---
+
+# Create account
+
+Creating an AdCue account is free and takes about a minute. Sign-in is handled by **Auth0** Universal Login (not a separate AdCue password form).
+
+## How to sign up
+
+1. Open [adcue.app](https://adcue.app) in a modern browser (Chrome, Safari, Firefox, or Edge).
+2. Choose **Get Started** or **Sign in**.
+3. Complete Auth0 sign-in. Use a verified email; AdCue requires `email_verified: true`.
+4. After success, you land on the authenticated shell at [adcue.app/app](https://adcue.app/app).
+
+That first screen is **Usage & Billing** — the home for plan status and upgrades once billing is enabled for your account.
+
+<Note>
+AdCue uses your identity only to authenticate you. Sign-in OAuth is separate from Google Ads API OAuth.
+Connecting ads never expands login scopes to Gmail, Drive, or unrelated Google services.
+</Note>
+
+## What you will see
+
+| After sign-in | Meaning |
+|---------------|---------|
+| Empty connections | Normal — connect Google Ads next |
+| Usage & Billing card | Plan and quota surface (may show free-tier limits) |
+| Sidebar routes | Connections, Setup, Keys, Settings, Monitors (product-gated) |
+
+Canonical app routes:
+
+| Page | URL |
+|------|-----|
+| Home | [adcue.app/app](https://adcue.app/app) |
+| Connections | [adcue.app/app/connections](https://adcue.app/app/connections) |
+| Setup | [adcue.app/app/setup](https://adcue.app/app/setup) |
+| Keys | [adcue.app/app/keys](https://adcue.app/app/keys) |
+| Settings | [adcue.app/app/settings](https://adcue.app/app/settings) |
+
+## Sign out
+
+Use **Settings** → sign out, or the Auth0 logout path your session provides. You can always return via [adcue.app/login](https://adcue.app/login).
+
+## Account deletion
+
+From **Settings**, the danger zone permanently deletes your AdCue user and cascaded product data (connections, MCP entitlement rows owned by that user, and related app state). Deletion is irreversible. Signing in again with the same identity creates a **new** user and onboarding state.
+
+Details: [Security](/knowledge/security).
+
+## Troubleshooting
+
+| Problem | What to try |
+|---------|-------------|
+| Auth popup or redirect fails | Allow third-party cookies / pop-ups for Auth0; try another browser |
+| “Email not verified” | Verify the email on the identity provider, then sign in again |
+| Landed on marketing page only | Open [adcue.app/app](https://adcue.app/app) directly after login |
+| Still stuck | Email [support@adcue.app](mailto:support@adcue.app) |
+
+## Next
+
+- [Connect Google Ads](/connect/google-ads)
+- [Quickstart](/quickstart)

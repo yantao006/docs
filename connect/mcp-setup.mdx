@@ -1,0 +1,126 @@
+---
+title: Connect an AI client
+description: Point ChatGPT, Claude, Cursor, and other MCP clients at AdCue MCP.
+---
+
+# Connect an AI client
+
+AdCue exposes Google Ads tools over the **Model Context Protocol (MCP)** so AI clients can call them with your connected account.
+
+## Endpoint
+
+```text
+https://mcp.adcue.app/mcp
+```
+
+In-app client guide: [adcue.app/app/setup](https://adcue.app/app/setup).
+
+Prerequisites:
+
+1. [Create an account](/create-account)
+2. [Connect Google Ads](/connect/google-ads)
+3. Ensure your account has MCP / agent access for the clients you use
+
+## ChatGPT
+
+1. Open the AdCue invitation or listing provided for your account (private beta rollout is staggered).
+2. Sign in to AdCue when ChatGPT prompts you.
+3. Connect Google Ads if you have not already (website or chat prompt).
+4. Verify with a read prompt: *“List my connected Google Ads accounts”* or *“Check my Google Ads connection.”*
+5. For writes, approve each mutation the client proposes.
+
+<Note>
+One-click ChatGPT access may roll out after website connection. You can always connect Google Ads on the website first; both paths share the same connection.
+</Note>
+
+## Claude (Desktop / Code / Cowork)
+
+### Remote MCP URL
+
+Add AdCue as a remote MCP server using the production URL above. Exact menus vary by Claude surface (directory install, Connectors, or manual MCP config).
+
+Typical remote config shape (client-specific fields may differ):
+
+```json
+{
+  "mcpServers": {
+    "adcue": {
+      "url": "https://mcp.adcue.app/mcp"
+    }
+  }
+}
+```
+
+### Auth
+
+- Complete AdCue OAuth / sign-in when the client prompts you.
+- If your plan uses API keys, create one at [adcue.app/app/keys](https://adcue.app/app/keys) and paste it only into the client’s secret field — never into chat or tickets.
+
+Claude directory / Cowork install flows may show **Install → Manage → Connectors → Connect → Authorize**. Prefer the in-app [Setup](https://adcue.app/app/setup) screenshots when available.
+
+## Cursor
+
+1. Open Cursor **Settings → MCP** (or the equivalent MCP servers panel).
+2. Add a server named `adcue` with URL `https://mcp.adcue.app/mcp`.
+3. Supply auth (OAuth or API key) as required by your account.
+4. Restart MCP / reload the window if tools do not appear.
+5. Test with a read tool via the agent (list campaigns or connection status).
+
+Example `mcp.json` style entry:
+
+```json
+{
+  "mcpServers": {
+    "adcue": {
+      "url": "https://mcp.adcue.app/mcp"
+    }
+  }
+}
+```
+
+## Other MCP clients
+
+Windsurf, Gemini CLI, Codex, and other MCP-compatible hosts follow the same pattern:
+
+1. Register `https://mcp.adcue.app/mcp` as a Streamable HTTP / remote MCP server.
+2. Authenticate as your AdCue user.
+3. Confirm tools appear (`search_tools`, `google_ads`, connection helpers).
+4. Start with **read-only** calls.
+
+## First prompts that stay safe
+
+```text
+List my connected Google Ads accounts.
+Show campaigns for customer 1234567890 (read only).
+Search tools related to wasted spend.
+```
+
+Avoid create/remove tools until you have read [Safety model](/mcp/safety).
+
+## API keys
+
+| Topic | Detail |
+|-------|--------|
+| Keys UI | [adcue.app/app/keys](https://adcue.app/app/keys) |
+| Format | `sk_live_…` personal access tokens |
+| Create | Generate on Keys; **copy once** (full secret is never shown again) |
+| Revoke | Revoke on Keys; revoked keys fail closed for MCP/API |
+| Limits | Active key caps follow your plan (Free 2, higher on paid) |
+
+Treat keys like passwords. Rotate or revoke compromised keys from the Keys page. Do not commit keys to git or paste them into public issues.
+
+## Troubleshooting
+
+| Problem | What to try |
+|---------|-------------|
+| Tools not listed | Reload MCP config; confirm URL path ends with `/mcp`; re-auth |
+| No ad accounts | Complete [Connect Google Ads](/connect/google-ads) first |
+| ChatGPT unavailable | Invitation may not be active; use Claude/Cursor or wait for beta invite |
+| Auth loops | Clear client MCP credentials, sign in again at adcue.app, retry |
+| Writes rejected | Check plan entitlements and destructive confirm flags |
+
+## Next
+
+- [How MCP works](/mcp/overview)
+- [Tool catalog](/mcp/tools)
+- [Safety model](/mcp/safety)

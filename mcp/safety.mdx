@@ -1,0 +1,96 @@
+---
+title: Safety model
+description: AdCue MCP safety rules — PAUSED creates, confirm deletes, customer IDs, and approvals.
+---
+
+# Safety model
+
+AdCue is designed so AI clients can help without accidental live spend. These rules apply across the V2 tool surface.
+
+## Core rules
+
+| Rule | What it means for you |
+|------|------------------------|
+| **Creates land PAUSED** | New campaigns, ads, and related create tools leave entities **PAUSED**. You enable them in Google Ads or with an explicit status tool when ready. |
+| **`customer_id` is a string** | Always pass IDs as strings (for example `"1234567890"`), never as JSON numbers that can lose precision. |
+| **Confirm destructive deletes** | Tools named like `remove_*` require `confirm_delete: true`. Omitting it fails closed. |
+| **Asset bundle TTL** | Temporary asset bundles expire after **1 hour**. Re-upload or re-select assets if a create fails after timeout. |
+| **Budgets in dollars** | Where tools accept human-facing budgets, use decimal dollars (for example `50.00`), not micros. |
+| **Explicit client approval** | Your AI client should ask before applying writes. Do not auto-approve bulk mutations on production accounts. |
+
+## Read vs write
+
+| Class | Examples | Risk |
+|-------|----------|------|
+| Read-only | `list_campaigns`, `analyze_search_terms`, `get_campaign_performance` | Low — no account mutation |
+| Non-destructive write | `pause_campaign`, `add_keywords`, `create_search_campaign` (PAUSED) | Medium — reversible or paused by default |
+| Destructive | `remove_keywords`, `remove_negative_keywords` | High — requires `confirm_delete: true` |
+
+The [tool catalog](/mcp/tools) marks each tool with **Read-only** and **Destructive** columns from the registry export.
+
+## Safe first workflow
+
+1. `get_connections_status` or `list_connected_accounts`
+2. `list_campaigns` / `get_campaign_structure` on a known `customer_id`
+3. Analysis tools (`analyze_wasted_spend`, `analyze_search_terms`)
+4. Only then create or mutate — still PAUSED / confirmed
+
+Example **safe** create argument shape:
+
+```json
+{
+  "action": "execute",
+  "tool_name": "create_search_campaign",
+  "arguments": {
+    "customer_id": "1234567890",
+    "campaign_name": "Test Search — review before enable"
+  }
+}
+```
+
+Confirm in Google Ads that new structure is **PAUSED** before enabling.
+
+Example **destructive** call (fails without confirm):
+
+```json
+{
+  "action": "execute",
+  "tool_name": "remove_keywords",
+  "arguments": {
+    "customer_id": "1234567890",
+    "confirm_delete": true
+  }
+}
+```
+
+## What AdCue will not do
+
+- Spend budget without a write you (or your client with your approval) initiated
+- Access Gmail, Drive, or non-Ads Google data via the Ads connection
+- Document or expose Meta / multi-platform tools as current product surface
+- Bypass auth or invent fake paid entitlements when billing is unconfigured
+
+## Auth boundaries
+
+| Layer | Purpose |
+|-------|---------|
+| Auth0 website login | Who you are on adcue.app |
+| Google Ads OAuth | Separate Ads API consent (`adwords` scope) |
+| MCP client auth | Session, OAuth, or API key so the MCP server knows which AdCue user is calling |
+
+Sign-in OAuth and Ads OAuth are **split on purpose**. Connecting ads does not enlarge login scopes.
+
+More: [Security](/knowledge/security).
+
+## Production hygiene
+
+- Prefer test or low-spend customers when learning create tools
+- Keep a human in the loop for budget increases and ENABLE transitions
+- Rotate API keys if a client is compromised ([Keys](https://adcue.app/app/keys))
+- Disconnect Google Ads from [Connections](https://adcue.app/app/connections) to revoke Ads tokens from the product side
+
+## Related
+
+- [How MCP works](/mcp/overview)
+- [Tool catalog](/mcp/tools)
+- [Connect an AI client](/connect/mcp-setup)

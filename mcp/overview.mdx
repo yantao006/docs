@@ -1,0 +1,89 @@
+---
+title: How MCP works
+description: Overview of AdCue MCP — tools, router pattern, and safety model.
+---
+
+# How MCP works
+
+## Endpoint
+
+```text
+https://mcp.adcue.app/mcp
+```
+
+Production serves the **V2** Google Ads tool surface (top-level helpers + `google_ads` router).
+
+## What MCP gives you
+
+AdCue exposes Google Ads operations as MCP tools so AI clients can:
+
+- Read account and campaign state
+- Create and manage Search campaigns (with safety rails)
+- Optimize keywords, budgets, and wasted spend
+- Reach advanced campaign types (Performance Max, YouTube, Demand Gen) when needed — marked **advanced** in the catalog
+
+Tool **names and counts** come from the V2 registry export (`docs-site/generated/tools.json`).
+See the [tool catalog](/mcp/tools) for the full list. Do not hand-edit tool lists in narrative pages.
+
+## Router pattern
+
+Most Google Ads operations go through the `google_ads` router.
+
+List tools:
+
+```json
+{ "action": "list_tools" }
+```
+
+Execute a tool:
+
+```json
+{
+  "action": "execute",
+  "tool_name": "list_campaigns",
+  "arguments": { "customer_id": "1234567890" }
+}
+```
+
+Discovery helpers at the top level:
+
+| Tool | Role |
+|------|------|
+| `search_tools` | Natural-language discovery over the catalog |
+| `get_tool_schema` | Exact parameters for one tool |
+| `get_connections_status` | Connection health |
+| `list_connected_accounts` | Connected Google Ads customers |
+| `get_usage_status` | Plan / quota summary |
+| `switch_primary_account` | Set the active customer for later calls |
+
+Some tools are also available **top-level** (not only via the router). The catalog marks each name’s exposure as `top`, `router`, or `both`.
+
+## How a request flows
+
+1. You type a goal in the AI client (or call a tool directly).
+2. The client selects an AdCue tool and arguments.
+3. AdCue authenticates your session / token and loads the stored Google Ads connection.
+4. Read tools return data; write tools require product safety rules and your approval in the client.
+5. The client presents the result.
+
+## Safety (summary)
+
+| Rule | Detail |
+|------|--------|
+| Creates are paused | New entities land **PAUSED** |
+| String customer IDs | Always pass `customer_id` as a string |
+| Confirm deletes | Destructive `remove_*` requires `confirm_delete: true` |
+| Asset TTL | Asset bundles expire in **1 hour** |
+| Budgets | Skill-facing budgets use **dollars** (decimal), not micros |
+
+Full page: [Safety model](/mcp/safety).
+
+## Advanced tools
+
+A subset of tools for Performance Max, YouTube, and Demand Gen is flagged **advanced** in the generated catalog. Prefer core Search / account tools for everyday workflows unless you intentionally need those campaign types.
+
+## Related
+
+- [Connect an AI client](/connect/mcp-setup)
+- [Tool catalog](/mcp/tools)
+- [Safety model](/mcp/safety)

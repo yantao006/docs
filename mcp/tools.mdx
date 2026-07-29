@@ -1,0 +1,121 @@
+---
+title: Tool catalog
+description: Registry-backed AdCue MCP tool catalog (V2 Google Ads tools).
+---
+
+# Tool catalog
+
+This page is **generated** from the V2 registry export (`docs-site/generated/tools.json`).
+Do not hand-edit tool lists here — regenerate with the docs-catalog scripts.
+
+Registry export timestamp: `2026-07-28T17:24:49Z`.
+
+**Total tools:** 61
+**Advanced (PMax / YouTube / Demand Gen):** 12
+
+## How tools are exposed
+
+| Exposure | Meaning |
+| --- | --- |
+| `top` | Call by name at the MCP top level |
+| `router` | Call via the `google_ads` router (`action=execute`) |
+| `both` | Available both top-level and via the router |
+
+Router execute shape:
+
+```json
+{
+  "action": "execute",
+  "tool_name": "list_campaigns",
+  "arguments": { "customer_id": "1234567890" }
+}
+```
+
+## Top-level tools
+
+| Tool | Description | Read-only | Destructive |
+| --- | --- | --- | --- |
+| `audit_conversion_tracking` | Audit conversion tracking health for Google Ads. | yes | no |
+| `get_campaign_performance` | Google Ads campaign performance metrics (top-level, not via router). | yes | no |
+| `get_connections_status` | Connection health for Google Ads. | yes | no |
+| `get_tool_schema` | Return the exact parameter schema for one tool. | yes | no |
+| `get_usage_status` | Plan and quota status (may report unlimited for free tier). | yes | no |
+| `google_ads` | Router for Google Ads tools. action=list_tools \| execute with tool_name and arguments. | no | no |
+| `list_connected_accounts` | List connected Google Ads accounts. | yes | no |
+| `search_tools` | Natural-language discovery over the AdCue Google Ads tool catalog. | yes | no |
+| `switch_primary_account` | Set the active Google Ads account for subsequent calls. | no | no |
+
+## Router tools (core)
+
+Core Search / account operations. Prefer these for everyday workflows.
+
+| Tool | Description | Read-only | Destructive |
+| --- | --- | --- | --- |
+| `add_callout_extensions` | Add callout extensions (4–6, ≤25 chars). | no | no |
+| `add_keywords` | Add positive keywords to an ad group. | no | no |
+| `add_negative_keywords` | Add campaign-level negative keywords. | no | no |
+| `add_sitelinks` | Add sitelink extensions to a campaign. | no | no |
+| `add_structured_snippets` | Add structured snippet extensions. | no | no |
+| `analyze_search_terms` | Analyze search terms report. | yes | no |
+| `analyze_wasted_spend` | Identify wasted spend opportunities. | yes | no |
+| `audit_conversion_tracking` | Audit conversion tracking health for Google Ads. | yes | no |
+| `create_ad` | Create a responsive search ad (default PAUSED). | no | no |
+| `create_search_campaign` | Create a Search campaign (always PAUSED) with ad groups and RSA. | no | no |
+| `discover_existing_assets` | Discover existing assets in the Google Ads account. | yes | no |
+| `explain_performance_anomaly` | Explain a metric spike or drop over a date window vs prior baseline. | yes | no |
+| `get_benchmark_context` | Industry CPC/CTR baselines and optional recommendations. | yes | no |
+| `get_business_profile` | Read the stored business profile for an account. | yes | no |
+| `get_campaign_performance` | Google Ads campaign performance metrics (top-level, not via router). | yes | no |
+| `get_campaign_structure` | Get campaign structure including ad_group_ids. | yes | no |
+| `get_campaign_targeting` | Get campaign location and language targeting. | yes | no |
+| `infer_business_profile` | Infer a business profile from account campaign and asset signals. | yes | no |
+| `list_campaign_extensions` | List campaign-level extensions (assets). | yes | no |
+| `list_campaigns` | List campaigns for a customer. | yes | no |
+| `list_google_languages` | List or validate Google Ads language constants / ISO codes. | yes | no |
+| `optimize_budget_allocation` | Recommend budget shifts across campaigns for a total monthly budget. | yes | no |
+| `pause_ad` | Pause an ad. | no | no |
+| `pause_campaign` | Pause a campaign. | no | no |
+| `remove_keywords` | Remove positive keywords (requires confirm_delete=true). | no | yes |
+| `remove_negative_keywords` | Remove negative keywords (requires confirm_delete=true). | no | yes |
+| `research_keywords` | Research keyword ideas (Keyword Planner when available). | yes | no |
+| `resolve_google_locations` | Resolve location names to geoTargetConstants (no silent US fallback). | yes | no |
+| `resume_ad` | Resume (enable) an ad. | no | no |
+| `resume_campaign` | Resume (enable) a campaign after user confirmation. | no | no |
+| `save_business_profile` | Persist business vertical, size, and primary goal. | no | no |
+| `search_audiences` | Discover in-market, affinity, custom, and user-list audience IDs. | yes | no |
+| `select_google_campaign_type` | Validate selected Google campaign type (search\|pmax\|youtube\|demand_gen). | yes | no |
+| `suggest_ad_content` | Suggest RSA headlines/descriptions (heuristic or AI). | yes | no |
+| `update_ad_content` | Update RSA content fields. | no | no |
+| `update_ad_descriptions` | Update RSA descriptions. | no | no |
+| `update_ad_headlines` | Update RSA headlines. | no | no |
+| `update_bid_strategy` | Update campaign bidding strategy. | no | no |
+| `update_campaign` | Update campaign name, status, or budget_amount (dollars). | no | no |
+| `update_campaign_budget` | Update campaign daily budget in dollars. | no | no |
+| `update_keyword` | Update keyword status or CPC bid. | no | no |
+| `validate_and_prepare_assets` | Validate image assets and return a 1-hour asset bundle_id. | no | no |
+
+## Advanced tools (PMax / YouTube / Demand Gen)
+
+Marked `advanced: true` in the registry export for S2 campaign types.
+Skills and MVP docs may still prefer Search-first paths.
+
+| Tool | Description | Read-only | Destructive |
+| --- | --- | --- | --- |
+| `add_demandgen_ad_group` | Add a Demand Gen ad group with creative assets. | no | no |
+| `add_pmax_audience_signal` | Attach one audience signal to a Performance Max asset group. | no | no |
+| `add_pmax_search_themes` | Add search themes to a Performance Max asset group (max 50). | no | no |
+| `create_demandgen_campaign` | Create a Demand Gen campaign (always PAUSED). | no | no |
+| `create_pmax_campaign` | Create a Performance Max campaign (always PAUSED) with asset group. | no | no |
+| `create_youtube_campaign` | Create a YouTube video campaign (always PAUSED). | no | no |
+| `get_pmax_audience_signals` | List Performance Max audience signals for a campaign. | yes | no |
+| `get_pmax_search_themes` | List Performance Max search themes for a campaign. | yes | no |
+| `help_user_upload` | Guide the user to upload missing creative assets for PMax/video. | yes | no |
+| `remove_pmax_audience_signal` | Remove a Performance Max audience signal by resource name. | no | no |
+| `remove_pmax_search_themes` | Remove Performance Max search themes by text match. | no | no |
+| `validate_video` | Validate a YouTube video id/URL for PMax (or note TikTok constraints). | yes | no |
+
+## Authoring rules
+
+- Never invent `meta_*` tool names (Meta Ads is out of scope for this catalog).
+- Never claim a fixed legacy tool count (for example the old 109-tool figure) — use the count above.
+- Tool names in MDX backticks must exist in `tools.json` (CI enforces this).

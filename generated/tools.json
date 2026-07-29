@@ -1,0 +1,496 @@
+{
+  "generated_at": "2026-07-28T17:24:49Z",
+  "source": "adcue_google_ads_v2.registry.TOOL_SPECS",
+  "count": 61,
+  "advanced_count": 12,
+  "tools": [
+    {
+      "name": "add_callout_extensions",
+      "description": "Add callout extensions (4–6, ≤25 chars).",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "add_demandgen_ad_group",
+      "description": "Add a Demand Gen ad group with creative assets.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "add_keywords",
+      "description": "Add positive keywords to an ad group.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "add_negative_keywords",
+      "description": "Add campaign-level negative keywords.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "add_pmax_audience_signal",
+      "description": "Attach one audience signal to a Performance Max asset group.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "add_pmax_search_themes",
+      "description": "Add search themes to a Performance Max asset group (max 50).",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "add_sitelinks",
+      "description": "Add sitelink extensions to a campaign.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "add_structured_snippets",
+      "description": "Add structured snippet extensions.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "analyze_search_terms",
+      "description": "Analyze search terms report.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "analyze_wasted_spend",
+      "description": "Identify wasted spend opportunities.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "audit_conversion_tracking",
+      "description": "Audit conversion tracking health for Google Ads.",
+      "expose": "both",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "create_ad",
+      "description": "Create a responsive search ad (default PAUSED).",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "create_demandgen_campaign",
+      "description": "Create a Demand Gen campaign (always PAUSED).",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "create_pmax_campaign",
+      "description": "Create a Performance Max campaign (always PAUSED) with asset group.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "create_search_campaign",
+      "description": "Create a Search campaign (always PAUSED) with ad groups and RSA.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "create_youtube_campaign",
+      "description": "Create a YouTube video campaign (always PAUSED).",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "discover_existing_assets",
+      "description": "Discover existing assets in the Google Ads account.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "explain_performance_anomaly",
+      "description": "Explain a metric spike or drop over a date window vs prior baseline.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "get_benchmark_context",
+      "description": "Industry CPC/CTR baselines and optional recommendations.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "get_business_profile",
+      "description": "Read the stored business profile for an account.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "get_campaign_performance",
+      "description": "Google Ads campaign performance metrics (top-level, not via router).",
+      "expose": "both",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "get_campaign_structure",
+      "description": "Get campaign structure including ad_group_ids.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "get_campaign_targeting",
+      "description": "Get campaign location and language targeting.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "get_connections_status",
+      "description": "Connection health for Google Ads.",
+      "expose": "top",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "get_pmax_audience_signals",
+      "description": "List Performance Max audience signals for a campaign.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "get_pmax_search_themes",
+      "description": "List Performance Max search themes for a campaign.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "get_tool_schema",
+      "description": "Return the exact parameter schema for one tool.",
+      "expose": "top",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "get_usage_status",
+      "description": "Plan and quota status (may report unlimited for free tier).",
+      "expose": "top",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "google_ads",
+      "description": "Router for Google Ads tools. action=list_tools | execute with tool_name and arguments.",
+      "expose": "top",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "help_user_upload",
+      "description": "Guide the user to upload missing creative assets for PMax/video.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "infer_business_profile",
+      "description": "Infer a business profile from account campaign and asset signals.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "list_campaign_extensions",
+      "description": "List campaign-level extensions (assets).",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "list_campaigns",
+      "description": "List campaigns for a customer.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "list_connected_accounts",
+      "description": "List connected Google Ads accounts.",
+      "expose": "top",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "list_google_languages",
+      "description": "List or validate Google Ads language constants / ISO codes.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "optimize_budget_allocation",
+      "description": "Recommend budget shifts across campaigns for a total monthly budget.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "pause_ad",
+      "description": "Pause an ad.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "pause_campaign",
+      "description": "Pause a campaign.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "remove_keywords",
+      "description": "Remove positive keywords (requires confirm_delete=true).",
+      "expose": "router",
+      "read_only": false,
+      "destructive": true,
+      "advanced": false
+    },
+    {
+      "name": "remove_negative_keywords",
+      "description": "Remove negative keywords (requires confirm_delete=true).",
+      "expose": "router",
+      "read_only": false,
+      "destructive": true,
+      "advanced": false
+    },
+    {
+      "name": "remove_pmax_audience_signal",
+      "description": "Remove a Performance Max audience signal by resource name.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "remove_pmax_search_themes",
+      "description": "Remove Performance Max search themes by text match.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": true
+    },
+    {
+      "name": "research_keywords",
+      "description": "Research keyword ideas (Keyword Planner when available).",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "resolve_google_locations",
+      "description": "Resolve location names to geoTargetConstants (no silent US fallback).",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "resume_ad",
+      "description": "Resume (enable) an ad.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "resume_campaign",
+      "description": "Resume (enable) a campaign after user confirmation.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "save_business_profile",
+      "description": "Persist business vertical, size, and primary goal.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "search_audiences",
+      "description": "Discover in-market, affinity, custom, and user-list audience IDs.",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "search_tools",
+      "description": "Natural-language discovery over the AdCue Google Ads tool catalog.",
+      "expose": "top",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "select_google_campaign_type",
+      "description": "Validate selected Google campaign type (search|pmax|youtube|demand_gen).",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "suggest_ad_content",
+      "description": "Suggest RSA headlines/descriptions (heuristic or AI).",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "switch_primary_account",
+      "description": "Set the active Google Ads account for subsequent calls.",
+      "expose": "top",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "update_ad_content",
+      "description": "Update RSA content fields.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "update_ad_descriptions",
+      "description": "Update RSA descriptions.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "update_ad_headlines",
+      "description": "Update RSA headlines.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "update_bid_strategy",
+      "description": "Update campaign bidding strategy.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "update_campaign",
+      "description": "Update campaign name, status, or budget_amount (dollars).",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "update_campaign_budget",
+      "description": "Update campaign daily budget in dollars.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "update_keyword",
+      "description": "Update keyword status or CPC bid.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "validate_and_prepare_assets",
+      "description": "Validate image assets and return a 1-hour asset bundle_id.",
+      "expose": "router",
+      "read_only": false,
+      "destructive": false,
+      "advanced": false
+    },
+    {
+      "name": "validate_video",
+      "description": "Validate a YouTube video id/URL for PMax (or note TikTok constraints).",
+      "expose": "router",
+      "read_only": true,
+      "destructive": false,
+      "advanced": true
+    }
+  ]
+}

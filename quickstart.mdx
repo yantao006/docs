@@ -1,47 +1,84 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: Quickstart
+description: Create an AdCue account, connect Google Ads, and run your first MCP tool.
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+# Quickstart
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+Get from zero to a first **read-only** MCP call in five steps.
 
-## Prerequisites
+## 1. Create an account
 
-Before you begin, you must have:
+1. Open [adcue.app](https://adcue.app) and choose **Get Started** / **Sign in**.
+2. Complete **Auth0** sign-in (email verification required).
+3. Land on the app shell at [adcue.app/app](https://adcue.app/app) (Usage & Billing).
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
+Details: [Create account](/create-account).
 
-## Get started
+## 2. Connect Google Ads
 
-<Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+1. Open [adcue.app/app/connections](https://adcue.app/app/connections).
+2. Start **Connect Google Ads** and approve Google’s consent screen with the identity that can access your ads.
+3. Choose a **primary** customer if more than one account is listed.
 
-    ```bash
-    npm install your-package
-    ```
-  </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+Details: [Connect Google Ads](/connect/google-ads).
 
-    ```bash
-    your-cli init
-    ```
-  </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+## 3. Connect an AI client
 
-    ```bash
-    your-cli start
-    ```
-  </Step>
-</Steps>
+Point your client at the production MCP endpoint:
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+```text
+https://mcp.adcue.app/mcp
+```
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+Supported first-wave clients: **ChatGPT**, **Claude**, and **Cursor** (plus other MCP-compatible tools).
+
+In-app walkthrough: [adcue.app/app/setup](https://adcue.app/app/setup).
+
+Full configs: [Connect an AI client](/connect/mcp-setup).
+
+## 4. First read call
+
+Prefer non-destructive tools first:
+
+| Goal | Tool / path |
+|------|-------------|
+| Discovery | `search_tools` or `google_ads` with `action=list_tools` |
+| Connection health | `get_connections_status` or `list_connected_accounts` |
+| Campaigns | `list_campaigns` via the `google_ads` router |
+
+Example router call:
+
+```json
+{
+  "action": "execute",
+  "tool_name": "list_campaigns",
+  "arguments": { "customer_id": "1234567890" }
+}
+```
+
+Always pass `customer_id` as a **string**.
+
+## 5. Safety defaults before any write
+
+| Rule | Detail |
+|------|--------|
+| Creates are paused | New entities land **PAUSED** until you enable them in Google Ads |
+| Confirm deletes | Destructive `remove_*` tools need `confirm_delete: true` |
+| Explicit approval | Client / product prompts should require confirmation before mutations |
+
+Full model: [Safety model](/mcp/safety).
+
+## Checklist
+
+- [ ] Signed in at [adcue.app/app](https://adcue.app/app)
+- [ ] Google Ads connected at `/app/connections`
+- [ ] MCP client pointed at `https://mcp.adcue.app/mcp`
+- [ ] Successful read: list accounts or campaigns
+- [ ] No write tools until you understand [safety](/mcp/safety)
+
+## Next
+
+- [Tool catalog](/mcp/tools) — full registry-backed list
+- [How MCP works](/mcp/overview) — router pattern and discovery
+- [FAQ](/knowledge/faq)

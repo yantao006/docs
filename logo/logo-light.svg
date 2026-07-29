@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 64" role="img" aria-labelledby="title">
+  <title id="title">AdCue horizontal full-color logo</title>
+  <path
+    fill="#2F6F5E"
+    d="M19 8h26c6.08 0 11 4.92 11 11v18h-8V19a3 3 0 0 0-3-3H19a3 3 0 0 0-3 3v26a3 3 0 0 0 3 3h18v8H19C12.92 56 8 51.08 8 45V19C8 12.92 12.92 8 19 8Z"
+  />
+  <circle cx="49" cy="49" r="7" fill="#E8B86D" />
+  <g
+    transform="translate(80)"
+    fill="none"
+    stroke="#1A1A2E"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="5.5"
+  >
+    <path d="M4 48 15.5 16.5c.8-2.2 3.9-2.2 4.7 0L32 48M9.5 35h17" />
+    <path d="M66 14v34M66 30c-4-4.7-8.7-7-14-7-8.5 0-14 5.5-14 13s5.5 13 14 13c5.3 0 10-2.3 14-7" />
+    <path d="M111 21c-4-5.3-10-8-18-8-13 0-21 7.7-21 18s8 19 21 19c8 0 14-2.7 18-8" />
+    <path d="M120 24v15c0 6.7 4 10 11 10 6 0 10.7-2.3 14-7V24M145 24v24" />
+    <path d="M156 36h28c0-8-5.7-13-14-13-9 0-15 5.7-15 13s6 13 16 13c6 0 10.3-2 13-6" />
+  </g>
+</svg>
