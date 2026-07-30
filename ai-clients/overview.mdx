@@ -1,0 +1,86 @@
+---
+title: AI clients
+description: Choose an AI client for AdCue, with ChatGPT as the first documented launch path.
+---
+
+# AI clients
+
+AdCue makes its Google Ads tools available to AI clients through MCP.
+Start with **ChatGPT** if your AdCue account has the private-beta invitation or connector listing.
+
+<Card title="Set up ChatGPT" icon="message-square" href="/ai-clients/chatgpt">
+  Follow the entitlement, AdCue OAuth, Google Ads OAuth, and first read steps.
+</Card>
+
+## ChatGPT availability
+
+ChatGPT access is rolling out to entitled accounts through a private-beta invitation or connector listing.
+It is not automatically available to every AdCue or ChatGPT account.
+
+The official ChatGPT path differs from a manual remote MCP setup:
+
+- Open the invitation or listing provided for your AdCue account.
+- Complete AdCue OAuth when ChatGPT prompts you.
+- Keep Google Ads OAuth separate through AdCue Connections.
+- Do not paste an API key or manually enter the MCP URL for this path.
+
+See [ChatGPT setup](/ai-clients/chatgpt).
+
+## Client guides in the app
+
+The authenticated [Setup](https://adcue.app/app/setup) page currently contains guidance for these ten clients:
+
+1. ChatGPT
+2. Claude Cowork
+3. Claude Code
+4. Cursor
+5. OpenClaw
+6. Codex
+7. Claude
+8. Manus
+9. Windsurf
+10. Gemini CLI
+
+ChatGPT is the first dedicated client page in these docs.
+The other client-specific pages will be published only after their individual authentication and configuration paths are verified.
+Until then, use the current in-app Setup steps rather than copying configuration from another client.
+
+## Shared prerequisites
+
+Every client needs:
+
+1. An [AdCue account](/create-account).
+2. A connected, tool-ready [Google Ads client account](/connect/google-ads).
+3. Access to the selected client path for your AdCue account.
+4. A successful read before any write.
+
+The production remote MCP endpoint is:
+
+```text
+https://mcp.adcue.app/mcp
+```
+
+Some remote MCP clients use this URL directly.
+The official ChatGPT connector loads it after authorization, so ChatGPT users normally do not enter it by hand.
+
+## Safe first prompt
+
+```text
+Check my Google Ads connection status. Do not make any changes.
+```
+
+A safe first call is `get_connections_status`.
+After the connection is healthy, use `list_connected_accounts` or `list_campaigns` before requesting any mutation.
+
+## Product boundary
+
+AI clients do not add capabilities that AdCue does not ship.
+The current advertising surface remains Google Ads, with Search as the primary workflow and live `list_tools` as runtime truth.
+
+Read [Capabilities](/knowledge/capabilities) before attempting advanced campaign types.
+
+## Next
+
+- [Set up ChatGPT](/ai-clients/chatgpt)
+- [Connect Google Ads](/connect/google-ads)
+- [Safety model](/mcp/safety)

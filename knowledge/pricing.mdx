@@ -1,49 +1,81 @@
 ---
 title: Pricing
-description: Outline of AdCue plans and billing (Creem). Final matrix pending product freeze.
+description: AdCue Pro, Business, and Enterprise plans with Creem billing.
 ---
 
 # Pricing
 
-<Note>
-**Outline (Doc-D4).** Public dollar amounts, trial length, and full feature matrices will be published when the commercial plan freezes. Do not treat legacy third-party or pre-rebrand price lists as current.
-</Note>
+AdCue has three paid plans.
+Every plan includes a 7-day free trial.
+There is no Free, Plus, or Max subscription plan.
+
+## Plans
+
+| Plan | Price | Google Ads accounts | Tool calls | Monitoring | Support |
+|------|-------|---------------------|------------|------------|---------|
+| **Pro** | **$79/month** | 1 active account | 500/month | Daily | Email and community |
+| **Business** | **$249/month** | Up to 5 active accounts | 2,000/month | Every 4 hours | Priority |
+| **Enterprise** | **$799/month** | Unlimited | 10,000/month | Hourly | Dedicated |
+
+Business is the recommended plan for teams managing multiple accounts.
+
+## Included capabilities
+
+### Pro
+
+- 7-day free trial
+- MCP tools for Google Ads
+- AI clients including ChatGPT, Claude, Cursor, Codex, and OpenClaw
+- Campaign management
+- Performance dashboards
+- Daily monitoring
+- Email and community support
+
+### Business
+
+Business includes everything in Pro, plus:
+
+- Up to 5 active Google Ads accounts
+- 2,000 tool calls per month
+- Multi-account management
+- Cross-account and batch audit views
+- Priority support
+- Monitoring every 4 hours
+
+### Enterprise
+
+Enterprise includes everything in Business, plus:
+
+- Unlimited Google Ads accounts
+- 10,000 tool calls per month
+- Dedicated support
+- Hourly monitoring
+
+## Platform availability
+
+Google Ads is the live advertising platform in the current product.
+Meta Ads is on the roadmap and is not included as a live capability.
+White-label functionality is not currently productized.
 
 ## How billing works
 
-- Subscriptions and checkout are processed by **Creem**
-- AdCue stores subscription state for access control after webhooks
-- Manage billing from [Usage & Billing](https://adcue.app/app) in the app shell
+Subscriptions and checkout are processed by **Creem**.
+AdCue stores webhook-synced subscription state for access control.
+Manage billing from [Usage & Billing](https://adcue.app/app) in the app shell.
 
-Details (outline): [Usage & Billing](/product/usage-billing).
+If checkout is not configured for a deployment, AdCue fails closed and does not invent trial or paid access.
 
-## Plan families
+## Start a trial
 
-Product code currently models these plan codes:
-
-| Plan | Intent |
-|------|--------|
-| **Free** | Get started — connect, explore, limited usage |
-| **Plus** | Paid tier for higher tool / usage limits |
-| **Pro** | Higher paid tier |
-| **Max** | Highest paid tier |
-
-Exact tool-call limits, seat rules, and list prices are **not** finalized on this page. When published, they will appear here and on the marketing pricing surface.
-
-## What to expect at checkout
-
-1. Sign in and open [adcue.app/app](https://adcue.app/app)
-2. Choose a paid plan when upgrade buttons are enabled
-3. Complete Creem Checkout
-4. Return to AdCue; subscription status updates after webhook processing
-
-## FAQ pointers
-
-- Cancel / refunds / payment methods: [FAQ — billing](/knowledge/faq#billing--plans)
-- Security of payment data: handled by Creem; AdCue stores subscription identifiers, not full card PANs
+1. Sign in and open [adcue.app/app](https://adcue.app/app).
+2. Choose Pro, Business, or Enterprise.
+3. Complete Creem Checkout.
+4. Return to AdCue after checkout.
+5. Wait for the webhook-synced status to show **Trial** or **Active** before using paid tools.
 
 ## Related
 
 - [Usage & Billing](/product/usage-billing)
 - [Create account](/create-account)
-- Product changelog: [adcue.app/changelog](https://adcue.app/changelog)
+- [FAQ](/knowledge/faq#billing--plans)
+- [Product changelog](https://adcue.app/changelog)

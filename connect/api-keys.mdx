@@ -1,0 +1,147 @@
+---
+title: API keys
+description: Create, copy, review quota, and revoke sk_live_ API keys in AdCue.
+---
+
+# Manage API keys
+
+AdCue API keys are personal access tokens with the `sk_live_` prefix.
+Manage them from [adcue.app/app/keys](https://adcue.app/app/keys).
+
+<Warning>
+This page documents the API key UI lifecycle only.
+It does not claim that the production MCP endpoint currently accepts `sk_live_` Bearer authentication.
+Use only an authentication path that AdCue has explicitly enabled for your client and account.
+The official ChatGPT connector does not require an API key.
+</Warning>
+
+## Before you create a key
+
+You need:
+
+- A signed-in [AdCue account](/create-account)
+- Available active-key quota on your current plan
+- A secure password manager or secrets store for the one-time secret
+
+The Keys page shows your current active count, plan name, and active-key limit.
+If your account has no active plan, the limit is zero and key generation is disabled.
+
+## Create a key
+
+1. Open [AI Agent API Keys](https://adcue.app/app/keys).
+2. Review the active-key quota shown above the list.
+3. Choose **Generate New Key**.
+4. Enter a recognizable name, such as the client or environment that will own it.
+5. Choose **Generate**.
+
+The default name is **Default** if you leave the name unchanged.
+A generated key becomes active immediately in the Keys UI.
+
+## Copy the secret once
+
+After creation, AdCue displays the complete `sk_live_` secret in a **Copy your key now** notice.
+Choose **Copy** and store it before dismissing the notice or leaving the page.
+
+<Warning>
+The complete secret is shown only once.
+AdCue stores a hash and short prefix, not a retrievable copy of the plaintext key.
+If you lose the secret, revoke that key and create a replacement.
+</Warning>
+
+Never paste a key into chat messages, support tickets, public issues, screenshots, or source control.
+Do not use the example placeholder `sk_live_your_token_here` as a real credential.
+
+## Understand the key list
+
+The Keys page lists active keys only.
+Each row can show:
+
+- The key name
+- An **Active** status
+- A shortened prefix followed by an ellipsis
+- The creation time
+- The last-used time when one has been recorded
+
+The shortened prefix helps you identify a key without revealing its secret.
+A last-used timestamp is informational and may be updated on a best-effort basis.
+
+## Active-key quota
+
+Only active keys count toward the limit.
+The current UI limits are:
+
+| Account state | Active-key limit |
+| --- | ---: |
+| No active plan | 0 |
+| Pro | 5 |
+| Business | 10 |
+| Enterprise | 20 |
+
+When the active count reaches the limit, **Generate New Key** is disabled.
+Revoking an active key removes it from the count and makes that slot available again.
+See [Pricing](/knowledge/pricing) for the current plan catalog.
+
+## Revoke a key
+
+Revoke a key when it is no longer needed, when a client is retired, or whenever the secret may have been exposed.
+
+1. Find the active key at [adcue.app/app/keys](https://adcue.app/app/keys).
+2. Choose **Revoke**.
+3. Choose **Confirm revoke**.
+
+After revocation:
+
+- The key is removed from the active-only list
+- The active-key count decreases
+- The revoked key cannot be restored
+- AdCue's key verifier rejects it rather than treating it as another authentication method
+
+Create a new key if you need to rotate credentials.
+Do not keep using the compromised secret after revocation.
+
+## Authentication boundary
+
+Creating a key successfully proves that the AdCue app stored its hash and can manage its lifecycle.
+It does not by itself prove that a particular production MCP client or gateway accepts that key.
+
+The AdCue key verifier fails closed for missing, malformed, unknown, and revoked keys.
+A gateway must be explicitly integrated with that verifier before `sk_live_` Bearer authentication can work through that gateway.
+Production MCP acceptance has not been verified in this guide with both a successful key request and an unauthenticated rejection.
+
+Until AdCue publishes a verified client-specific key path:
+
+- Follow the OAuth or sign-in flow shown for your AI client
+- Do not infer MCP support from the Bearer example visible in the Keys UI
+- Do not replace the official ChatGPT OAuth flow with an API key
+- Treat an authentication rejection as final rather than repeatedly exposing the secret
+
+## Troubleshooting
+
+### Generate New Key is disabled
+
+Check the active count and limit at the top of the Keys page.
+Accounts without an active plan have a zero-key limit.
+If you are at a paid-plan limit, revoke an unused key before creating another.
+
+### The full key is no longer visible
+
+The secret cannot be retrieved again.
+Revoke the key by its name and prefix, then create and securely store a replacement.
+
+### A revoked key is still listed in a client
+
+Removing a key from AdCue does not erase a copy stored in an external client.
+Remove the revoked secret from that client as well.
+The AdCue verifier still rejects the revoked key.
+
+### A client rejects an active key
+
+Do not assume the secret is malformed simply because it appears active in the Keys UI.
+The production client path might not support `sk_live_` authentication.
+Use the authentication instructions for that specific client or contact [support@adcue.app](mailto:support@adcue.app) without sending the key.
+
+## Next
+
+- [Connect Google Ads](/connect/google-ads)
+- [AI clients overview](/ai-clients/overview)
+- [Usage and billing](/product/usage-billing)

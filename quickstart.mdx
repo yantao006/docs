@@ -1,53 +1,85 @@
 ---
 title: Quickstart
-description: Create an AdCue account, connect Google Ads, and run your first MCP tool.
+description: Create an AdCue account, connect Google Ads, authorize entitled ChatGPT access, and run your first read.
 ---
 
 # Quickstart
 
-Get from zero to a first **read-only** MCP call in five steps.
+Follow this path from a new AdCue account to a first read-only result in ChatGPT.
 
 ## 1. Create an account
 
-1. Open [adcue.app](https://adcue.app) and choose **Get Started** / **Sign in**.
-2. Complete **Auth0** sign-in (email verification required).
-3. Land on the app shell at [adcue.app/app](https://adcue.app/app) (Usage & Billing).
+1. Open [adcue.app](https://adcue.app) and choose **Continue with Google** in the header.
+2. Choose a verified Google account on the Auth0-secured account chooser.
+3. After success, open the app at [adcue.app/app](https://adcue.app/app).
+
+Use [adcue.app/login](https://adcue.app/login) for error recovery or other sign-in options.
 
 Details: [Create account](/create-account).
 
 ## 2. Connect Google Ads
 
-1. Open [adcue.app/app/connections](https://adcue.app/app/connections).
-2. Start **Connect Google Ads** and approve Google’s consent screen with the identity that can access your ads.
-3. Choose a **primary** customer if more than one account is listed.
+1. Open [Connections](https://adcue.app/app/connections).
+2. Choose **Connect Google Ads** and approve the separate Google Ads OAuth consent.
+3. If you use an MCC, expand the manager in the account picker to find its direct client sub-accounts.
+4. Choose a client ad account as primary.
+
+A manager account is not a tool-ready primary.
+If there is exactly one discovered client, AdCue selects it automatically.
+If there are multiple clients, use **Switch Active** to choose one.
 
 Details: [Connect Google Ads](/connect/google-ads).
 
-## 3. Connect an AI client
+## 3. Confirm ChatGPT entitlement
 
-Point your client at the production MCP endpoint:
+ChatGPT access is a staggered private beta.
+Open the invitation or connector listing provided for your AdCue account.
+
+Do not assume that an AdCue login makes the connector available to every ChatGPT account.
+If you do not have an invitation or listing, stop here until entitlement is enabled.
+
+Details: [ChatGPT setup](/ai-clients/chatgpt).
+
+## 4. Authorize ChatGPT
+
+1. Start the connect or authorize action from the entitled ChatGPT invitation or listing.
+2. Complete AdCue OAuth with the same AdCue account that owns the Google Ads connection.
+3. Return to ChatGPT and wait for the AdCue tools to load.
+
+AdCue OAuth identifies your AdCue user.
+Google Ads OAuth grants the separate Ads scope.
+The official ChatGPT path requires these two authorizations only, not a pasted API key.
+
+## 5. Make the first read call
+
+Ask ChatGPT:
 
 ```text
-https://mcp.adcue.app/mcp
+Check my Google Ads connection status. Do not make any changes.
 ```
 
-Supported first-wave clients: **ChatGPT**, **Claude**, and **Cursor** (plus other MCP-compatible tools).
+The first call should be `get_connections_status`.
+It is read-only and confirms whether the connector can see your Google Ads connection before you request campaign data.
 
-In-app walkthrough: [adcue.app/app/setup](https://adcue.app/app/setup).
+A second safe prompt is:
 
-Full configs: [Connect an AI client](/connect/mcp-setup).
+```text
+List my connected Google Ads accounts. Do not make any changes.
+```
 
-## 4. First read call
+That uses `list_connected_accounts`.
+If the active account is an MCC or no client primary is selected, return to Connections and use **Switch Active**.
 
-Prefer non-destructive tools first:
+## 6. Read campaigns
 
-| Goal | Tool / path |
-|------|-------------|
-| Discovery | `search_tools` or `google_ads` with `action=list_tools` |
-| Connection health | `get_connections_status` or `list_connected_accounts` |
-| Campaigns | `list_campaigns` via the `google_ads` router |
+After connection status succeeds, ask:
 
-Example router call:
+```text
+List campaigns for my active Google Ads client account. Do not make any changes.
+```
+
+The client can use `list_campaigns` through the `google_ads` router.
+When calling the router directly, the shape is:
 
 ```json
 {
@@ -57,28 +89,30 @@ Example router call:
 }
 ```
 
-Always pass `customer_id` as a **string**.
+Always pass `customer_id` as a string.
 
-## 5. Safety defaults before any write
+## Before any write
 
-| Rule | Detail |
-|------|--------|
-| Creates are paused | New entities land **PAUSED** until you enable them in Google Ads |
-| Confirm deletes | Destructive `remove_*` tools need `confirm_delete: true` |
-| Explicit approval | Client / product prompts should require confirmation before mutations |
+| Rule | What it means |
+| --- | --- |
+| Creates are paused | New campaigns and ads land **PAUSED** |
+| Confirm removes | Destructive remove tools require `confirm_delete: true` |
+| Keep approval explicit | Review the target, budget, and expected effect before approving a mutation |
+| Verify runtime tools | Use live `google_ads` with `action: "list_tools"` before attempting an advanced path |
 
-Full model: [Safety model](/mcp/safety).
+Read the full [Safety model](/mcp/safety).
 
 ## Checklist
 
 - [ ] Signed in at [adcue.app/app](https://adcue.app/app)
-- [ ] Google Ads connected at `/app/connections`
-- [ ] MCP client pointed at `https://mcp.adcue.app/mcp`
-- [ ] Successful read: list accounts or campaigns
-- [ ] No write tools until you understand [safety](/mcp/safety)
+- [ ] Google Ads OAuth completed
+- [ ] Client ad account selected as primary
+- [ ] ChatGPT invitation or listing available for this AdCue account
+- [ ] AdCue OAuth completed in ChatGPT
+- [ ] `get_connections_status` succeeded before any write
 
 ## Next
 
-- [Tool catalog](/mcp/tools) — full registry-backed list
-- [How MCP works](/mcp/overview) — router pattern and discovery
-- [FAQ](/knowledge/faq)
+- [Capabilities](/knowledge/capabilities)
+- [Tool catalog](/mcp/tools)
+- [How MCP works](/mcp/overview)

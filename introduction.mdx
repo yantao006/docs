@@ -1,56 +1,67 @@
 ---
 title: Introduction
-description: AdCue documentation — AI advertising audit, optimization, and MCP for Google Ads.
+description: AdCue documentation for Google Ads, AI clients, and the MCP tool surface.
 ---
 
 # Introduction
 
-**AdCue** helps you audit, optimize, and operate **Google Ads** through:
+**AdCue** helps you inspect and operate Google Ads from AI clients through a safety-first MCP tool surface.
+Google Search is the primary workflow, and the recommended first session stays read-only.
 
-- A product shell at [adcue.app/app](https://adcue.app/app)
-- An MCP endpoint at [mcp.adcue.app/mcp](https://mcp.adcue.app/mcp) for AI clients (Claude, Cursor, ChatGPT, and other MCP-compatible tools)
+## Start here
 
-Use natural language or structured tool calls to list campaigns, analyze wasted spend, create Search structure safely, and manage keywords — with explicit approval for anything that changes an ad account.
+The launch path is:
+
+1. [Create an AdCue account](/create-account).
+2. [Connect Google Ads](/connect/google-ads) and choose a client ad account as primary.
+3. Confirm your private-beta [ChatGPT entitlement](/ai-clients/chatgpt) through the invitation or connector listing provided for your account.
+4. Authorize the connector with AdCue OAuth.
+5. Run `get_connections_status` as your first read.
+
+<Note>
+ChatGPT access is not automatically enabled for every account.
+AdCue OAuth in ChatGPT and Google Ads OAuth in Connections are separate authorizations.
+The official ChatGPT path does not require you to paste an API key.
+</Note>
 
 ## What AdCue is for
 
 | Goal | How AdCue helps |
-|------|-----------------|
-| Understand account state | List campaigns, structure, performance, and connection health |
-| Find waste | Search-term analysis, wasted-spend signals, budget recommendations |
-| Create safely | New Search campaigns and ads land **PAUSED** by default |
-| Operate from AI tools | MCP tools for Claude, Cursor, ChatGPT, and similar clients |
+| --- | --- |
+| Understand account state | Read connections, client accounts, campaigns, structure, performance, and conversion tracking |
+| Find waste | Analyze search terms and wasted spend before proposing a change |
+| Build Search campaigns | Research, create, and verify Google Search campaigns that land paused |
+| Operate from AI clients | Use the AdCue MCP surface from entitled ChatGPT accounts and other clients covered by in-app Setup |
 
-## Platforms today
+See [Capabilities](/knowledge/capabilities) for the supported boundary and advanced-tool rules.
 
-AdCue’s live surface is **Google Ads**.
+## Product boundary
 
-Meta, TikTok, Amazon, LinkedIn, and other platforms are **not** available as documented product features. Do not expect how-to pages or tool names for those platforms in this site.
+AdCue's live advertising surface is **Google Ads only**.
+Search is the primary end-to-end path.
+Advanced Performance Max, YouTube, and Demand Gen tools remain visible in the catalog, but the live `google_ads` `list_tools` response is the runtime source of truth.
+
+AdCue does not document other advertising platforms, a public advertising REST API, or server-side monitoring as shipped capabilities.
 
 ## Product surfaces
 
 | Surface | URL | Role |
-|---------|-----|------|
-| Marketing | [adcue.app](https://adcue.app) | Product home and waitlist |
-| App shell | [adcue.app/app](https://adcue.app/app) | Usage & Billing, connections, setup, keys, settings |
-| Connections | [adcue.app/app/connections](https://adcue.app/app/connections) | Link Google Ads |
-| Setup | [adcue.app/app/setup](https://adcue.app/app/setup) | Connect AI clients |
-| API keys | [adcue.app/app/keys](https://adcue.app/app/keys) | Tokens for agents (when enabled for your account) |
-| Settings | [adcue.app/app/settings](https://adcue.app/app/settings) | Profile and account controls |
-| MCP | [mcp.adcue.app/mcp](https://mcp.adcue.app/mcp) | Remote MCP endpoint |
+| --- | --- | --- |
+| App | [adcue.app/app](https://adcue.app/app) | Account home, usage, and connection health |
+| Connections | [adcue.app/app/connections](https://adcue.app/app/connections) | Google Ads OAuth, account discovery, and client primary selection |
+| Setup | [adcue.app/app/setup](https://adcue.app/app/setup) | Current AI client setup steps |
+| MCP | [mcp.adcue.app/mcp](https://mcp.adcue.app/mcp) | Production remote MCP endpoint |
 
-## Docs map
+## Documentation map
 
 | Section | Start here |
-|---------|------------|
-| First run | [Quickstart](/quickstart) · [Create account](/create-account) |
-| Connect ads & clients | [Connect Google Ads](/connect/google-ads) · [Connect an AI client](/connect/mcp-setup) |
-| MCP & tools | [How MCP works](/mcp/overview) · [Tool catalog](/mcp/tools) · [Safety model](/mcp/safety) |
-| Product (outline) | [Usage & Billing](/product/usage-billing) · [Pricing](/knowledge/pricing) |
-| Help | [FAQ](/knowledge/faq) · [Security](/knowledge/security) |
+| --- | --- |
+| Get started | [Quickstart](/quickstart) and [Capabilities](/knowledge/capabilities) |
+| Connect | [Connect Google Ads](/connect/google-ads) |
+| AI clients | [Overview](/ai-clients/overview) and [ChatGPT](/ai-clients/chatgpt) |
+| MCP & Skills | [How MCP works](/mcp/overview), [Tool catalog](/mcp/tools), and [Safety model](/mcp/safety) |
+| Knowledge | [Pricing](/knowledge/pricing), [Security](/knowledge/security), and [FAQ](/knowledge/faq) |
 
 ## Next
 
-1. [Create an account](/create-account)
-2. [Connect Google Ads](/connect/google-ads)
-3. [Connect an AI client](/connect/mcp-setup) and run a first **read** tool
+Follow the [Quickstart](/quickstart) from account creation to your first read-only ChatGPT result.

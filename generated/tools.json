@@ -1,8 +1,10 @@
 {
-  "generated_at": "2026-07-28T17:24:49Z",
+  "generated_at": "2026-07-30T15:01:38Z",
   "source": "adcue_google_ads_v2.registry.TOOL_SPECS",
   "count": 61,
   "advanced_count": 12,
+  "schema_version": 2,
+  "tools_with_parameters": 59,
   "tools": [
     {
       "name": "add_callout_extensions",
@@ -10,7 +12,53 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "callouts": {
+          "type": "array",
+          "description": "Callout text strings",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "callouts"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "callouts": {
+            "type": "array",
+            "description": "Callout text strings",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "callouts"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "add_demandgen_ad_group",
@@ -18,7 +66,231 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "ad_group_name": {
+          "type": "string",
+          "description": "Ad group name"
+        },
+        "final_url": {
+          "type": "string",
+          "description": "Landing page URL"
+        },
+        "business_name": {
+          "type": "string",
+          "description": "Business name"
+        },
+        "headlines": {
+          "type": "array",
+          "description": "Headlines",
+          "items": {
+            "type": "string"
+          }
+        },
+        "descriptions": {
+          "type": "array",
+          "description": "Descriptions",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "ad_format": {
+          "type": "string",
+          "description": "multi_asset or video_responsive"
+        },
+        "long_headlines": {
+          "type": "array",
+          "description": "Long headlines",
+          "items": {
+            "type": "string"
+          }
+        },
+        "youtube_video_ids": {
+          "type": "array",
+          "description": "Video ids",
+          "items": {
+            "type": "string"
+          }
+        },
+        "call_to_action": {
+          "type": "string",
+          "description": "CTA label"
+        },
+        "target_locations": {
+          "type": "array",
+          "description": "Locations"
+        },
+        "target_languages": {
+          "type": "array",
+          "description": "Languages"
+        },
+        "audience_segments": {
+          "type": "array",
+          "description": "Audience segments"
+        },
+        "channels": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "asset_bundle_id": {
+          "type": "string",
+          "description": "Asset bundle id"
+        },
+        "logo_asset_id": {
+          "type": "string",
+          "description": "Logo asset id"
+        },
+        "marketing_images": {
+          "type": "array",
+          "description": "Landscape images"
+        },
+        "square_marketing_images": {
+          "type": "array",
+          "description": "Square images"
+        },
+        "portrait_marketing_images": {
+          "type": "array",
+          "description": "Portrait images"
+        },
+        "logo_images": {
+          "type": "array",
+          "description": "Logo images"
+        },
+        "existing_images": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "campaign_id",
+        "ad_group_name",
+        "final_url",
+        "business_name",
+        "headlines",
+        "descriptions"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "ad_group_name": {
+            "type": "string",
+            "description": "Ad group name"
+          },
+          "final_url": {
+            "type": "string",
+            "description": "Landing page URL"
+          },
+          "business_name": {
+            "type": "string",
+            "description": "Business name"
+          },
+          "headlines": {
+            "type": "array",
+            "description": "Headlines",
+            "items": {
+              "type": "string"
+            }
+          },
+          "descriptions": {
+            "type": "array",
+            "description": "Descriptions",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "ad_format": {
+            "type": "string",
+            "description": "multi_asset or video_responsive"
+          },
+          "long_headlines": {
+            "type": "array",
+            "description": "Long headlines",
+            "items": {
+              "type": "string"
+            }
+          },
+          "youtube_video_ids": {
+            "type": "array",
+            "description": "Video ids",
+            "items": {
+              "type": "string"
+            }
+          },
+          "call_to_action": {
+            "type": "string",
+            "description": "CTA label"
+          },
+          "target_locations": {
+            "type": "array",
+            "description": "Locations"
+          },
+          "target_languages": {
+            "type": "array",
+            "description": "Languages"
+          },
+          "audience_segments": {
+            "type": "array",
+            "description": "Audience segments"
+          },
+          "channels": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "asset_bundle_id": {
+            "type": "string",
+            "description": "Asset bundle id"
+          },
+          "logo_asset_id": {
+            "type": "string",
+            "description": "Logo asset id"
+          },
+          "marketing_images": {
+            "type": "array",
+            "description": "Landscape images"
+          },
+          "square_marketing_images": {
+            "type": "array",
+            "description": "Square images"
+          },
+          "portrait_marketing_images": {
+            "type": "array",
+            "description": "Portrait images"
+          },
+          "logo_images": {
+            "type": "array",
+            "description": "Logo images"
+          },
+          "existing_images": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "campaign_id",
+          "ad_group_name",
+          "final_url",
+          "business_name",
+          "headlines",
+          "descriptions"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "add_keywords",
@@ -26,7 +298,79 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "keywords": {
+          "type": "array",
+          "description": "Keyword objects",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "match_type": {
+                "type": "string",
+                "enum": [
+                  "BROAD",
+                  "PHRASE",
+                  "EXACT"
+                ]
+              }
+            }
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "ad_group_id",
+        "keywords"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Keyword objects",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "match_type": {
+                  "type": "string",
+                  "enum": [
+                    "BROAD",
+                    "PHRASE",
+                    "EXACT"
+                  ]
+                }
+              }
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "ad_group_id",
+          "keywords"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "add_negative_keywords",
@@ -34,7 +378,79 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "keywords": {
+          "type": "array",
+          "description": "Keyword objects",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "match_type": {
+                "type": "string",
+                "enum": [
+                  "BROAD",
+                  "PHRASE",
+                  "EXACT"
+                ]
+              }
+            }
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "keywords"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Keyword objects",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "match_type": {
+                  "type": "string",
+                  "enum": [
+                    "BROAD",
+                    "PHRASE",
+                    "EXACT"
+                  ]
+                }
+              }
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "keywords"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "add_pmax_audience_signal",
@@ -42,7 +458,57 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "audience_config": {
+          "type": "object",
+          "description": "Audience config with segment IDs from search_audiences",
+          "additionalProperties": true
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "asset_group_id": {
+          "type": "string",
+          "description": "Optional asset group id"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "audience_config"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "audience_config": {
+            "type": "object",
+            "description": "Audience config with segment IDs from search_audiences",
+            "additionalProperties": true
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "asset_group_id": {
+            "type": "string",
+            "description": "Optional asset group id"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "audience_config"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "add_pmax_search_themes",
@@ -50,7 +516,61 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "search_themes": {
+          "type": "array",
+          "description": "Theme strings",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "asset_group_id": {
+          "type": "string",
+          "description": "Optional asset group id"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "search_themes"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "search_themes": {
+            "type": "array",
+            "description": "Theme strings",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "asset_group_id": {
+            "type": "string",
+            "description": "Optional asset group id"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "search_themes"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "add_sitelinks",
@@ -58,7 +578,47 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "sitelinks": {
+          "type": "array",
+          "description": "Sitelink objects"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "sitelinks"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "sitelinks": {
+            "type": "array",
+            "description": "Sitelink objects"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "sitelinks"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "add_structured_snippets",
@@ -66,7 +626,47 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "snippets": {
+          "type": "array",
+          "description": "Snippet objects with header and values"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "snippets"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "snippets": {
+            "type": "array",
+            "description": "Snippet objects with header and values"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "snippets"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "analyze_search_terms",
@@ -74,7 +674,77 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "analysis_type": {
+          "type": "string",
+          "description": "Analysis type"
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "raw_data": {
+          "type": "boolean",
+          "description": "Include raw rows"
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "analysis_type": {
+            "type": "string",
+            "description": "Analysis type"
+          },
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "end_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "raw_data": {
+            "type": "boolean",
+            "description": "Include raw rows"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "analyze_wasted_spend",
@@ -82,7 +752,57 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "target_roas": {
+          "type": "number",
+          "description": "Target ROAS"
+        },
+        "raw_data": {
+          "type": "boolean",
+          "description": "Include raw rows"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "end_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "target_roas": {
+            "type": "number",
+            "description": "Target ROAS"
+          },
+          "raw_data": {
+            "type": "boolean",
+            "description": "Include raw rows"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "audit_conversion_tracking",
@@ -90,7 +810,41 @@
       "expose": "both",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "lookback_days": {
+          "type": "integer",
+          "description": "Lookback days"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Platform filter (google)"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "lookback_days": {
+            "type": "integer",
+            "description": "Lookback days"
+          },
+          "platform": {
+            "type": "string",
+            "description": "Platform filter (google)"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "create_ad",
@@ -98,7 +852,101 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "descriptions": {
+          "type": "array",
+          "description": "Descriptions",
+          "items": {
+            "type": "string"
+          }
+        },
+        "final_urls": {
+          "type": "array",
+          "description": "Final URLs",
+          "items": {
+            "type": "string"
+          }
+        },
+        "headlines": {
+          "type": "array",
+          "description": "Headlines",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "path1": {
+          "type": "string",
+          "description": "Display path 1"
+        },
+        "path2": {
+          "type": "string",
+          "description": "Display path 2"
+        }
+      },
+      "required": [
+        "ad_group_id",
+        "descriptions",
+        "final_urls",
+        "headlines"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "descriptions": {
+            "type": "array",
+            "description": "Descriptions",
+            "items": {
+              "type": "string"
+            }
+          },
+          "final_urls": {
+            "type": "array",
+            "description": "Final URLs",
+            "items": {
+              "type": "string"
+            }
+          },
+          "headlines": {
+            "type": "array",
+            "description": "Headlines",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "path1": {
+            "type": "string",
+            "description": "Display path 1"
+          },
+          "path2": {
+            "type": "string",
+            "description": "Display path 2"
+          }
+        },
+        "required": [
+          "ad_group_id",
+          "descriptions",
+          "final_urls",
+          "headlines"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "create_demandgen_campaign",
@@ -106,7 +954,257 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_name": {
+          "type": "string",
+          "description": "Campaign name"
+        },
+        "budget_daily": {
+          "type": "number",
+          "description": "Daily budget dollars"
+        },
+        "final_url": {
+          "type": "string",
+          "description": "Landing page URL"
+        },
+        "business_name": {
+          "type": "string",
+          "description": "Business name, max 25 chars"
+        },
+        "headlines": {
+          "type": "array",
+          "description": "1-5 headlines, max 40 chars",
+          "items": {
+            "type": "string"
+          }
+        },
+        "descriptions": {
+          "type": "array",
+          "description": "1-5 descriptions, max 90 chars",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "ad_format": {
+          "type": "string",
+          "description": "multi_asset or video_responsive"
+        },
+        "long_headlines": {
+          "type": "array",
+          "description": "Long headlines",
+          "items": {
+            "type": "string"
+          }
+        },
+        "youtube_video_ids": {
+          "type": "array",
+          "description": "Video ids for video_responsive",
+          "items": {
+            "type": "string"
+          }
+        },
+        "call_to_action": {
+          "type": "string",
+          "description": "CTA label"
+        },
+        "bidding_strategy": {
+          "type": "string",
+          "description": "Bidding strategy name"
+        },
+        "target_cpa": {
+          "type": "number",
+          "description": "Target CPA"
+        },
+        "target_roas": {
+          "type": "number",
+          "description": "Target ROAS"
+        },
+        "target_locations": {
+          "type": "array",
+          "description": "Locations"
+        },
+        "target_languages": {
+          "type": "array",
+          "description": "ISO language codes"
+        },
+        "audience_segments": {
+          "type": "array",
+          "description": "Audience segments"
+        },
+        "channels": {
+          "type": "object",
+          "description": "Channel controls",
+          "additionalProperties": true
+        },
+        "asset_bundle_id": {
+          "type": "string",
+          "description": "Asset bundle id"
+        },
+        "logo_asset_id": {
+          "type": "string",
+          "description": "Logo asset id"
+        },
+        "marketing_images": {
+          "type": "array",
+          "description": "Landscape images"
+        },
+        "square_marketing_images": {
+          "type": "array",
+          "description": "Square images"
+        },
+        "portrait_marketing_images": {
+          "type": "array",
+          "description": "Portrait images"
+        },
+        "logo_images": {
+          "type": "array",
+          "description": "Logo image objects"
+        },
+        "existing_images": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "campaign_name",
+        "budget_daily",
+        "final_url",
+        "business_name",
+        "headlines",
+        "descriptions"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_name": {
+            "type": "string",
+            "description": "Campaign name"
+          },
+          "budget_daily": {
+            "type": "number",
+            "description": "Daily budget dollars"
+          },
+          "final_url": {
+            "type": "string",
+            "description": "Landing page URL"
+          },
+          "business_name": {
+            "type": "string",
+            "description": "Business name, max 25 chars"
+          },
+          "headlines": {
+            "type": "array",
+            "description": "1-5 headlines, max 40 chars",
+            "items": {
+              "type": "string"
+            }
+          },
+          "descriptions": {
+            "type": "array",
+            "description": "1-5 descriptions, max 90 chars",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "ad_format": {
+            "type": "string",
+            "description": "multi_asset or video_responsive"
+          },
+          "long_headlines": {
+            "type": "array",
+            "description": "Long headlines",
+            "items": {
+              "type": "string"
+            }
+          },
+          "youtube_video_ids": {
+            "type": "array",
+            "description": "Video ids for video_responsive",
+            "items": {
+              "type": "string"
+            }
+          },
+          "call_to_action": {
+            "type": "string",
+            "description": "CTA label"
+          },
+          "bidding_strategy": {
+            "type": "string",
+            "description": "Bidding strategy name"
+          },
+          "target_cpa": {
+            "type": "number",
+            "description": "Target CPA"
+          },
+          "target_roas": {
+            "type": "number",
+            "description": "Target ROAS"
+          },
+          "target_locations": {
+            "type": "array",
+            "description": "Locations"
+          },
+          "target_languages": {
+            "type": "array",
+            "description": "ISO language codes"
+          },
+          "audience_segments": {
+            "type": "array",
+            "description": "Audience segments"
+          },
+          "channels": {
+            "type": "object",
+            "description": "Channel controls",
+            "additionalProperties": true
+          },
+          "asset_bundle_id": {
+            "type": "string",
+            "description": "Asset bundle id"
+          },
+          "logo_asset_id": {
+            "type": "string",
+            "description": "Logo asset id"
+          },
+          "marketing_images": {
+            "type": "array",
+            "description": "Landscape images"
+          },
+          "square_marketing_images": {
+            "type": "array",
+            "description": "Square images"
+          },
+          "portrait_marketing_images": {
+            "type": "array",
+            "description": "Portrait images"
+          },
+          "logo_images": {
+            "type": "array",
+            "description": "Logo image objects"
+          },
+          "existing_images": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "campaign_name",
+          "budget_daily",
+          "final_url",
+          "business_name",
+          "headlines",
+          "descriptions"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "create_pmax_campaign",
@@ -114,7 +1212,197 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_name": {
+          "type": "string",
+          "description": "Campaign name"
+        },
+        "budget_daily": {
+          "type": "number",
+          "description": "Daily budget in dollars (min 10)"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "final_url": {
+          "type": "string",
+          "description": "Landing page URL (single-group mode)"
+        },
+        "business_name": {
+          "type": "string",
+          "description": "Business name, max 25 chars"
+        },
+        "headlines": {
+          "type": "array",
+          "description": "3-15 headlines, max 30 chars",
+          "items": {
+            "type": "string"
+          }
+        },
+        "long_headlines": {
+          "type": "array",
+          "description": "1-5 long headlines, max 90 chars",
+          "items": {
+            "type": "string"
+          }
+        },
+        "descriptions": {
+          "type": "array",
+          "description": "2-4 descriptions, max 90 chars",
+          "items": {
+            "type": "string"
+          }
+        },
+        "search_themes": {
+          "type": "array",
+          "description": "Search theme strings (max 50)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "audience_signals": {
+          "type": "array",
+          "description": "Audience signal configs"
+        },
+        "youtube_video_ids": {
+          "type": "array",
+          "description": "YouTube video ids",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target_locations": {
+          "type": "array",
+          "description": "Location names or geo ids"
+        },
+        "target_languages": {
+          "type": "array",
+          "description": "Language names or codes"
+        },
+        "bidding_strategy": {
+          "type": "string",
+          "description": "MAXIMIZE_CONVERSIONS or MAXIMIZE_CONVERSION_VALUE"
+        },
+        "target_roas": {
+          "type": "number",
+          "description": "Target ROAS for MAXIMIZE_CONVERSION_VALUE"
+        },
+        "asset_bundle_id": {
+          "type": "string",
+          "description": "Bundle id from validate_and_prepare_assets"
+        },
+        "asset_groups": {
+          "type": "array",
+          "description": "Optional multi asset-group payloads"
+        },
+        "existing_image_ids": {
+          "type": "array",
+          "description": "Existing image asset resource names"
+        }
+      },
+      "required": [
+        "campaign_name",
+        "budget_daily"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_name": {
+            "type": "string",
+            "description": "Campaign name"
+          },
+          "budget_daily": {
+            "type": "number",
+            "description": "Daily budget in dollars (min 10)"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "final_url": {
+            "type": "string",
+            "description": "Landing page URL (single-group mode)"
+          },
+          "business_name": {
+            "type": "string",
+            "description": "Business name, max 25 chars"
+          },
+          "headlines": {
+            "type": "array",
+            "description": "3-15 headlines, max 30 chars",
+            "items": {
+              "type": "string"
+            }
+          },
+          "long_headlines": {
+            "type": "array",
+            "description": "1-5 long headlines, max 90 chars",
+            "items": {
+              "type": "string"
+            }
+          },
+          "descriptions": {
+            "type": "array",
+            "description": "2-4 descriptions, max 90 chars",
+            "items": {
+              "type": "string"
+            }
+          },
+          "search_themes": {
+            "type": "array",
+            "description": "Search theme strings (max 50)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "audience_signals": {
+            "type": "array",
+            "description": "Audience signal configs"
+          },
+          "youtube_video_ids": {
+            "type": "array",
+            "description": "YouTube video ids",
+            "items": {
+              "type": "string"
+            }
+          },
+          "target_locations": {
+            "type": "array",
+            "description": "Location names or geo ids"
+          },
+          "target_languages": {
+            "type": "array",
+            "description": "Language names or codes"
+          },
+          "bidding_strategy": {
+            "type": "string",
+            "description": "MAXIMIZE_CONVERSIONS or MAXIMIZE_CONVERSION_VALUE"
+          },
+          "target_roas": {
+            "type": "number",
+            "description": "Target ROAS for MAXIMIZE_CONVERSION_VALUE"
+          },
+          "asset_bundle_id": {
+            "type": "string",
+            "description": "Bundle id from validate_and_prepare_assets"
+          },
+          "asset_groups": {
+            "type": "array",
+            "description": "Optional multi asset-group payloads"
+          },
+          "existing_image_ids": {
+            "type": "array",
+            "description": "Existing image asset resource names"
+          }
+        },
+        "required": [
+          "campaign_name",
+          "budget_daily"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "create_search_campaign",
@@ -122,7 +1410,127 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_groups": {
+          "type": "array",
+          "description": "Ad groups with keywords and optional ads"
+        },
+        "budget_daily": {
+          "type": "number",
+          "description": "Daily budget in dollars (min 10)"
+        },
+        "business_description": {
+          "type": "string",
+          "description": "Business description"
+        },
+        "campaign_name": {
+          "type": "string",
+          "description": "Campaign name"
+        },
+        "target_locations": {
+          "type": "array",
+          "description": "Location names or geo ids"
+        },
+        "website_url": {
+          "type": "string",
+          "description": "Final URL"
+        },
+        "bidding_strategy": {
+          "type": "string",
+          "description": "Bidding strategy name"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "negative_keywords": {
+          "type": "array",
+          "description": "Negative keywords"
+        },
+        "objective": {
+          "type": "string",
+          "description": "Campaign objective"
+        },
+        "target_roas": {
+          "type": "number",
+          "description": "Target ROAS"
+        },
+        "bundle_id": {
+          "type": "string",
+          "description": "Optional asset bundle id"
+        }
+      },
+      "required": [
+        "ad_groups",
+        "budget_daily",
+        "business_description",
+        "campaign_name",
+        "target_locations",
+        "website_url"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_groups": {
+            "type": "array",
+            "description": "Ad groups with keywords and optional ads"
+          },
+          "budget_daily": {
+            "type": "number",
+            "description": "Daily budget in dollars (min 10)"
+          },
+          "business_description": {
+            "type": "string",
+            "description": "Business description"
+          },
+          "campaign_name": {
+            "type": "string",
+            "description": "Campaign name"
+          },
+          "target_locations": {
+            "type": "array",
+            "description": "Location names or geo ids"
+          },
+          "website_url": {
+            "type": "string",
+            "description": "Final URL"
+          },
+          "bidding_strategy": {
+            "type": "string",
+            "description": "Bidding strategy name"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "negative_keywords": {
+            "type": "array",
+            "description": "Negative keywords"
+          },
+          "objective": {
+            "type": "string",
+            "description": "Campaign objective"
+          },
+          "target_roas": {
+            "type": "number",
+            "description": "Target ROAS"
+          },
+          "bundle_id": {
+            "type": "string",
+            "description": "Optional asset bundle id"
+          }
+        },
+        "required": [
+          "ad_groups",
+          "budget_daily",
+          "business_description",
+          "campaign_name",
+          "target_locations",
+          "website_url"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "create_youtube_campaign",
@@ -130,7 +1538,201 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_name": {
+          "type": "string",
+          "description": "Campaign name"
+        },
+        "budget_daily": {
+          "type": "number",
+          "description": "Daily budget dollars"
+        },
+        "youtube_video_id": {
+          "type": "string",
+          "description": "Primary YouTube video id (11 chars)"
+        },
+        "final_url": {
+          "type": "string",
+          "description": "Landing page URL"
+        },
+        "business_name": {
+          "type": "string",
+          "description": "Business name, max 25 chars"
+        },
+        "headlines": {
+          "type": "array",
+          "description": "1-5 headlines, max 40 chars",
+          "items": {
+            "type": "string"
+          }
+        },
+        "descriptions": {
+          "type": "array",
+          "description": "1-5 descriptions, max 90 chars",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "additional_video_ids": {
+          "type": "array",
+          "description": "Up to 4 extra video ids",
+          "items": {
+            "type": "string"
+          }
+        },
+        "long_headlines": {
+          "type": "array",
+          "description": "Optional long headlines",
+          "items": {
+            "type": "string"
+          }
+        },
+        "call_to_action": {
+          "type": "string",
+          "description": "CTA e.g. LEARN_MORE"
+        },
+        "bidding_strategy": {
+          "type": "string",
+          "description": "MAXIMIZE_CLICKS, TARGET_CPA, ..."
+        },
+        "target_cpa": {
+          "type": "number",
+          "description": "Target CPA dollars"
+        },
+        "target_locations": {
+          "type": "array",
+          "description": "Locations"
+        },
+        "target_languages": {
+          "type": "array",
+          "description": "ISO language codes"
+        },
+        "audience_segments": {
+          "type": "array",
+          "description": "Audience segment configs"
+        },
+        "asset_bundle_id": {
+          "type": "string",
+          "description": "Asset bundle id"
+        },
+        "logo_asset_id": {
+          "type": "string",
+          "description": "Logo asset resource name or id"
+        }
+      },
+      "required": [
+        "campaign_name",
+        "budget_daily",
+        "youtube_video_id",
+        "final_url",
+        "business_name",
+        "headlines",
+        "descriptions"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_name": {
+            "type": "string",
+            "description": "Campaign name"
+          },
+          "budget_daily": {
+            "type": "number",
+            "description": "Daily budget dollars"
+          },
+          "youtube_video_id": {
+            "type": "string",
+            "description": "Primary YouTube video id (11 chars)"
+          },
+          "final_url": {
+            "type": "string",
+            "description": "Landing page URL"
+          },
+          "business_name": {
+            "type": "string",
+            "description": "Business name, max 25 chars"
+          },
+          "headlines": {
+            "type": "array",
+            "description": "1-5 headlines, max 40 chars",
+            "items": {
+              "type": "string"
+            }
+          },
+          "descriptions": {
+            "type": "array",
+            "description": "1-5 descriptions, max 90 chars",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "additional_video_ids": {
+            "type": "array",
+            "description": "Up to 4 extra video ids",
+            "items": {
+              "type": "string"
+            }
+          },
+          "long_headlines": {
+            "type": "array",
+            "description": "Optional long headlines",
+            "items": {
+              "type": "string"
+            }
+          },
+          "call_to_action": {
+            "type": "string",
+            "description": "CTA e.g. LEARN_MORE"
+          },
+          "bidding_strategy": {
+            "type": "string",
+            "description": "MAXIMIZE_CLICKS, TARGET_CPA, ..."
+          },
+          "target_cpa": {
+            "type": "number",
+            "description": "Target CPA dollars"
+          },
+          "target_locations": {
+            "type": "array",
+            "description": "Locations"
+          },
+          "target_languages": {
+            "type": "array",
+            "description": "ISO language codes"
+          },
+          "audience_segments": {
+            "type": "array",
+            "description": "Audience segment configs"
+          },
+          "asset_bundle_id": {
+            "type": "string",
+            "description": "Asset bundle id"
+          },
+          "logo_asset_id": {
+            "type": "string",
+            "description": "Logo asset resource name or id"
+          }
+        },
+        "required": [
+          "campaign_name",
+          "budget_daily",
+          "youtube_video_id",
+          "final_url",
+          "business_name",
+          "headlines",
+          "descriptions"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "discover_existing_assets",
@@ -138,7 +1740,47 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "asset_types": {
+          "type": "array",
+          "description": "Asset type filters",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "target_domain": {
+          "type": "string",
+          "description": "Domain filter"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "asset_types": {
+            "type": "array",
+            "description": "Asset type filters",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "target_domain": {
+            "type": "string",
+            "description": "Domain filter"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "explain_performance_anomaly",
@@ -146,7 +1788,65 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "metric": {
+          "type": "string",
+          "description": "Metric: roas, ctr, cpc, cpa, conversions, cost, clicks"
+        },
+        "period_start": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "period_end": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "raw_data": {
+          "type": "boolean",
+          "description": "Raw metrics only"
+        }
+      },
+      "required": [
+        "metric",
+        "period_start",
+        "period_end"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "metric": {
+            "type": "string",
+            "description": "Metric: roas, ctr, cpc, cpa, conversions, cost, clicks"
+          },
+          "period_start": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "period_end": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "raw_data": {
+            "type": "boolean",
+            "description": "Raw metrics only"
+          }
+        },
+        "required": [
+          "metric",
+          "period_start",
+          "period_end"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_benchmark_context",
@@ -154,7 +1854,33 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "include_recommendations": {
+          "type": "boolean",
+          "description": "Include recommendations (default true)"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "include_recommendations": {
+            "type": "boolean",
+            "description": "Include recommendations (default true)"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_business_profile",
@@ -162,7 +1888,25 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_campaign_performance",
@@ -170,7 +1914,65 @@
       "expose": "both",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "date_range": {
+          "type": "string",
+          "description": "Named range e.g. LAST_7_DAYS"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "lookback_days": {
+          "type": "integer",
+          "description": "Lookback window in days"
+        },
+        "raw_data": {
+          "type": "boolean",
+          "description": "Include raw rows"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "date_range": {
+            "type": "string",
+            "description": "Named range e.g. LAST_7_DAYS"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "end_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "lookback_days": {
+            "type": "integer",
+            "description": "Lookback window in days"
+          },
+          "raw_data": {
+            "type": "boolean",
+            "description": "Include raw rows"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_campaign_structure",
@@ -178,7 +1980,71 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "include": {
+          "type": "array",
+          "description": "Sections to include",
+          "items": {
+            "type": "string"
+          }
+        },
+        "page": {
+          "type": "integer"
+        },
+        "page_size": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "include": {
+            "type": "array",
+            "description": "Sections to include",
+            "items": {
+              "type": "string"
+            }
+          },
+          "page": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_campaign_targeting",
@@ -186,7 +2052,37 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_connections_status",
@@ -194,7 +2090,15 @@
       "expose": "top",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {},
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_pmax_audience_signals",
@@ -202,7 +2106,37 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_pmax_search_themes",
@@ -210,7 +2144,37 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_tool_schema",
@@ -218,7 +2182,37 @@
       "expose": "top",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "tool_name": {
+          "type": "string",
+          "description": "Tool name"
+        },
+        "intent": {
+          "type": "string",
+          "description": "Optional usage intent"
+        }
+      },
+      "required": [
+        "tool_name"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "tool_name": {
+            "type": "string",
+            "description": "Tool name"
+          },
+          "intent": {
+            "type": "string",
+            "description": "Optional usage intent"
+          }
+        },
+        "required": [
+          "tool_name"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "get_usage_status",
@@ -226,7 +2220,15 @@
       "expose": "top",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {},
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "google_ads",
@@ -234,7 +2236,55 @@
       "expose": "top",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "list_tools",
+            "execute"
+          ],
+          "description": "list_tools or execute"
+        },
+        "tool_name": {
+          "type": "string",
+          "description": "Required when action=execute"
+        },
+        "arguments": {
+          "type": "object",
+          "description": "Arguments for the routed tool",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "list_tools",
+              "execute"
+            ],
+            "description": "list_tools or execute"
+          },
+          "tool_name": {
+            "type": "string",
+            "description": "Required when action=execute"
+          },
+          "arguments": {
+            "type": "object",
+            "description": "Arguments for the routed tool",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "help_user_upload",
@@ -242,7 +2292,39 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "platform": {
+          "type": "string",
+          "description": "Optional platform hint e.g. pmax, youtube, demand_gen"
+        },
+        "missing": {
+          "type": "array",
+          "description": "Optional list of missing asset kinds",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "description": "Optional platform hint e.g. pmax, youtube, demand_gen"
+          },
+          "missing": {
+            "type": "array",
+            "description": "Optional list of missing asset kinds",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "infer_business_profile",
@@ -250,7 +2332,33 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "force_save": {
+          "type": "boolean",
+          "description": "Save even if confidence is low"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "force_save": {
+            "type": "boolean",
+            "description": "Save even if confidence is low"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "list_campaign_extensions",
@@ -258,7 +2366,37 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "list_campaigns",
@@ -266,7 +2404,41 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_type": {
+          "type": "string",
+          "description": "Channel type filter"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "status_filter": {
+          "type": "string",
+          "description": "Status filter e.g. ENABLED,PAUSED"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_type": {
+            "type": "string",
+            "description": "Channel type filter"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "status_filter": {
+            "type": "string",
+            "description": "Status filter e.g. ENABLED,PAUSED"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "list_connected_accounts",
@@ -274,7 +2446,25 @@
       "expose": "top",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "platform": {
+          "type": "string",
+          "description": "Optional platform filter (google)"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "description": "Optional platform filter (google)"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "list_google_languages",
@@ -282,7 +2472,31 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "codes": {
+          "type": "array",
+          "description": "Optional ISO language codes",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "codes": {
+            "type": "array",
+            "description": "Optional ISO language codes",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "optimize_budget_allocation",
@@ -290,7 +2504,99 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "total_budget": {
+          "type": "number",
+          "description": "Total monthly budget in dollars"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "date_range": {
+          "type": "string",
+          "description": "Preset range e.g. last_30_days"
+        },
+        "lookback_days": {
+          "type": "integer"
+        },
+        "start_date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "end_date": {
+          "type": "string",
+          "description": "YYYY-MM-DD"
+        },
+        "max_change_percentage": {
+          "type": "number",
+          "description": "Max change fraction 0-1, default 0.5"
+        },
+        "min_daily_budget": {
+          "type": "number",
+          "description": "Min daily budget dollars, default 5"
+        },
+        "target_roas": {
+          "type": "number",
+          "description": "Optional target ROAS"
+        },
+        "raw_data": {
+          "type": "boolean",
+          "description": "Return raw metrics only"
+        }
+      },
+      "required": [
+        "total_budget"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "total_budget": {
+            "type": "number",
+            "description": "Total monthly budget in dollars"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "date_range": {
+            "type": "string",
+            "description": "Preset range e.g. last_30_days"
+          },
+          "lookback_days": {
+            "type": "integer"
+          },
+          "start_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "end_date": {
+            "type": "string",
+            "description": "YYYY-MM-DD"
+          },
+          "max_change_percentage": {
+            "type": "number",
+            "description": "Max change fraction 0-1, default 0.5"
+          },
+          "min_daily_budget": {
+            "type": "number",
+            "description": "Min daily budget dollars, default 5"
+          },
+          "target_roas": {
+            "type": "number",
+            "description": "Optional target ROAS"
+          },
+          "raw_data": {
+            "type": "boolean",
+            "description": "Return raw metrics only"
+          }
+        },
+        "required": [
+          "total_budget"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "pause_ad",
@@ -298,7 +2604,47 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "ad_id": {
+          "type": "string",
+          "description": "Ad id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "ad_group_id",
+        "ad_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "ad_id": {
+            "type": "string",
+            "description": "Ad id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "ad_group_id",
+          "ad_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "pause_campaign",
@@ -306,7 +2652,37 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "remove_keywords",
@@ -314,7 +2690,61 @@
       "expose": "router",
       "read_only": false,
       "destructive": true,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "keyword_ids": {
+          "type": "array",
+          "description": "Keyword criterion ids",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "confirm_delete": {
+          "type": "boolean",
+          "description": "Must be true to proceed"
+        }
+      },
+      "required": [
+        "ad_group_id",
+        "keyword_ids"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "keyword_ids": {
+            "type": "array",
+            "description": "Keyword criterion ids",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "confirm_delete": {
+            "type": "boolean",
+            "description": "Must be true to proceed"
+          }
+        },
+        "required": [
+          "ad_group_id",
+          "keyword_ids"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "remove_negative_keywords",
@@ -322,7 +2752,61 @@
       "expose": "router",
       "read_only": false,
       "destructive": true,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "keyword_ids": {
+          "type": "array",
+          "description": "Criterion ids",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "confirm_delete": {
+          "type": "boolean",
+          "description": "Must be true to proceed"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "keyword_ids"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "keyword_ids": {
+            "type": "array",
+            "description": "Criterion ids",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "confirm_delete": {
+            "type": "boolean",
+            "description": "Must be true to proceed"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "keyword_ids"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "remove_pmax_audience_signal",
@@ -330,7 +2814,47 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "signal_resource_name": {
+          "type": "string",
+          "description": "Asset group signal resource name"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "signal_resource_name"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "signal_resource_name": {
+            "type": "string",
+            "description": "Asset group signal resource name"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "signal_resource_name"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "remove_pmax_search_themes",
@@ -338,7 +2862,53 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "themes_to_remove": {
+          "type": "array",
+          "description": "Theme texts to remove",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "themes_to_remove"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "themes_to_remove": {
+            "type": "array",
+            "description": "Theme texts to remove",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "themes_to_remove"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "research_keywords",
@@ -346,7 +2916,63 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "business_description": {
+          "type": "string",
+          "description": "Business description"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "seed_keywords": {
+          "type": "array",
+          "description": "Seed keywords",
+          "items": {
+            "type": "string"
+          }
+        },
+        "target_location": {
+          "type": "string",
+          "description": "Target location name"
+        },
+        "website_url": {
+          "type": "string",
+          "description": "Website URL"
+        }
+      },
+      "required": [],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "business_description": {
+            "type": "string",
+            "description": "Business description"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "seed_keywords": {
+            "type": "array",
+            "description": "Seed keywords",
+            "items": {
+              "type": "string"
+            }
+          },
+          "target_location": {
+            "type": "string",
+            "description": "Target location name"
+          },
+          "website_url": {
+            "type": "string",
+            "description": "Website URL"
+          }
+        },
+        "required": [],
+        "additionalProperties": true
+      }
     },
     {
       "name": "resolve_google_locations",
@@ -354,7 +2980,35 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "locations": {
+          "type": "array",
+          "description": "Location name strings",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "locations"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "locations": {
+            "type": "array",
+            "description": "Location name strings",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "locations"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "resume_ad",
@@ -362,7 +3016,47 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "ad_id": {
+          "type": "string",
+          "description": "Ad id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "ad_group_id",
+        "ad_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "ad_id": {
+            "type": "string",
+            "description": "Ad id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "ad_group_id",
+          "ad_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "resume_campaign",
@@ -370,7 +3064,37 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "save_business_profile",
@@ -378,7 +3102,81 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "business_vertical": {
+          "type": "string",
+          "description": "Vertical e.g. retail, technology"
+        },
+        "business_size": {
+          "type": "string",
+          "description": "small, medium, or large"
+        },
+        "primary_goal": {
+          "type": "string",
+          "description": "leads, sales, awareness, traffic, engagement"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "geographic_focus": {
+          "type": "string",
+          "description": "local|regional|national|international"
+        },
+        "seasonality": {
+          "type": "string",
+          "description": "Seasonality pattern"
+        },
+        "target_audience": {
+          "type": "string",
+          "description": "Audience description"
+        }
+      },
+      "required": [
+        "business_vertical",
+        "business_size",
+        "primary_goal"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "business_vertical": {
+            "type": "string",
+            "description": "Vertical e.g. retail, technology"
+          },
+          "business_size": {
+            "type": "string",
+            "description": "small, medium, or large"
+          },
+          "primary_goal": {
+            "type": "string",
+            "description": "leads, sales, awareness, traffic, engagement"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "geographic_focus": {
+            "type": "string",
+            "description": "local|regional|national|international"
+          },
+          "seasonality": {
+            "type": "string",
+            "description": "Seasonality pattern"
+          },
+          "target_audience": {
+            "type": "string",
+            "description": "Audience description"
+          }
+        },
+        "required": [
+          "business_vertical",
+          "business_size",
+          "primary_goal"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "search_audiences",
@@ -386,7 +3184,37 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Audience search query"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Audience search query"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "search_tools",
@@ -394,7 +3222,29 @@
       "expose": "top",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "query": {
+          "type": "string",
+          "description": "Search query"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "select_google_campaign_type",
@@ -402,7 +3252,29 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_type": {
+          "type": "string",
+          "description": "Campaign type: search, pmax, youtube, demand_gen"
+        }
+      },
+      "required": [
+        "campaign_type"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_type": {
+            "type": "string",
+            "description": "Campaign type: search, pmax, youtube, demand_gen"
+          }
+        },
+        "required": [
+          "campaign_type"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "suggest_ad_content",
@@ -410,7 +3282,87 @@
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "business_description": {
+          "type": "string",
+          "description": "Business description"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "key_benefits": {
+          "type": "array",
+          "description": "Key benefits",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pain_points": {
+          "type": "array",
+          "description": "Pain points",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proof_points": {
+          "type": "array",
+          "description": "Proof points",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "business_description": {
+            "type": "string",
+            "description": "Business description"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "key_benefits": {
+            "type": "array",
+            "description": "Key benefits",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pain_points": {
+            "type": "array",
+            "description": "Pain points",
+            "items": {
+              "type": "string"
+            }
+          },
+          "proof_points": {
+            "type": "array",
+            "description": "Proof points",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "switch_primary_account",
@@ -418,7 +3370,51 @@
       "expose": "top",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "platform": {
+          "type": "string",
+          "description": "Platform name, e.g. google"
+        },
+        "account_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "account_ids": {
+          "type": "array",
+          "description": "Optional multi-account selection",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "platform"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "description": "Platform name, e.g. google"
+          },
+          "account_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "account_ids": {
+            "type": "array",
+            "description": "Optional multi-account selection",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "platform"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "update_ad_content",
@@ -426,7 +3422,89 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "ad_id": {
+          "type": "string",
+          "description": "Ad id as string"
+        },
+        "headlines": {
+          "type": "array",
+          "description": "Headlines",
+          "items": {
+            "type": "string"
+          }
+        },
+        "descriptions": {
+          "type": "array",
+          "description": "Descriptions",
+          "items": {
+            "type": "string"
+          }
+        },
+        "final_urls": {
+          "type": "array",
+          "description": "Final URLs",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "ad_group_id",
+        "ad_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "ad_id": {
+            "type": "string",
+            "description": "Ad id as string"
+          },
+          "headlines": {
+            "type": "array",
+            "description": "Headlines",
+            "items": {
+              "type": "string"
+            }
+          },
+          "descriptions": {
+            "type": "array",
+            "description": "Descriptions",
+            "items": {
+              "type": "string"
+            }
+          },
+          "final_urls": {
+            "type": "array",
+            "description": "Final URLs",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "ad_group_id",
+          "ad_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "update_ad_descriptions",
@@ -434,7 +3512,63 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "ad_id": {
+          "type": "string",
+          "description": "Ad id as string"
+        },
+        "descriptions": {
+          "type": "array",
+          "description": "Descriptions",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "ad_group_id",
+        "ad_id",
+        "descriptions"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "ad_id": {
+            "type": "string",
+            "description": "Ad id as string"
+          },
+          "descriptions": {
+            "type": "array",
+            "description": "Descriptions",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "ad_group_id",
+          "ad_id",
+          "descriptions"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "update_ad_headlines",
@@ -442,7 +3576,63 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "ad_id": {
+          "type": "string",
+          "description": "Ad id as string"
+        },
+        "headlines": {
+          "type": "array",
+          "description": "Headlines",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "ad_group_id",
+        "ad_id",
+        "headlines"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "ad_id": {
+            "type": "string",
+            "description": "Ad id as string"
+          },
+          "headlines": {
+            "type": "array",
+            "description": "Headlines",
+            "items": {
+              "type": "string"
+            }
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "ad_group_id",
+          "ad_id",
+          "headlines"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "update_bid_strategy",
@@ -450,7 +3640,63 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "strategy": {
+          "type": "string",
+          "description": "Strategy name e.g. MAXIMIZE_CLICKS"
+        },
+        "target_cpa": {
+          "type": "number",
+          "description": "Target CPA dollars"
+        },
+        "target_roas": {
+          "type": "number",
+          "description": "Target ROAS"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id",
+        "strategy"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "strategy": {
+            "type": "string",
+            "description": "Strategy name e.g. MAXIMIZE_CLICKS"
+          },
+          "target_cpa": {
+            "type": "number",
+            "description": "Target CPA dollars"
+          },
+          "target_roas": {
+            "type": "number",
+            "description": "Target ROAS"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id",
+          "strategy"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "update_campaign",
@@ -458,7 +3704,61 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "budget_amount": {
+          "type": "number",
+          "description": "Daily budget in dollars"
+        },
+        "name": {
+          "type": "string",
+          "description": "Campaign name"
+        },
+        "status": {
+          "type": "string",
+          "description": "ENABLED or PAUSED"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "budget_amount": {
+            "type": "number",
+            "description": "Daily budget in dollars"
+          },
+          "name": {
+            "type": "string",
+            "description": "Campaign name"
+          },
+          "status": {
+            "type": "string",
+            "description": "ENABLED or PAUSED"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "update_campaign_budget",
@@ -466,7 +3766,53 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "campaign_id": {
+          "type": "string",
+          "description": "Campaign id as string"
+        },
+        "budget_amount": {
+          "type": "number",
+          "description": "Daily budget in dollars"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Alias for budget_amount in dollars"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        }
+      },
+      "required": [
+        "campaign_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "campaign_id": {
+            "type": "string",
+            "description": "Campaign id as string"
+          },
+          "budget_amount": {
+            "type": "number",
+            "description": "Daily budget in dollars"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Alias for budget_amount in dollars"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          }
+        },
+        "required": [
+          "campaign_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "update_keyword",
@@ -474,7 +3820,61 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "ad_group_id": {
+          "type": "string",
+          "description": "Ad group id as string"
+        },
+        "keyword_id": {
+          "type": "string",
+          "description": "Keyword criterion id"
+        },
+        "cpc_bid_micros": {
+          "type": "integer"
+        },
+        "customer_id": {
+          "type": "string",
+          "description": "Google Ads customer id as digits string"
+        },
+        "status": {
+          "type": "string",
+          "description": "ENABLED or PAUSED"
+        }
+      },
+      "required": [
+        "ad_group_id",
+        "keyword_id"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "ad_group_id": {
+            "type": "string",
+            "description": "Ad group id as string"
+          },
+          "keyword_id": {
+            "type": "string",
+            "description": "Keyword criterion id"
+          },
+          "cpc_bid_micros": {
+            "type": "integer"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Google Ads customer id as digits string"
+          },
+          "status": {
+            "type": "string",
+            "description": "ENABLED or PAUSED"
+          }
+        },
+        "required": [
+          "ad_group_id",
+          "keyword_id"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "validate_and_prepare_assets",
@@ -482,15 +3882,105 @@
       "expose": "router",
       "read_only": false,
       "destructive": false,
-      "advanced": false
+      "advanced": false,
+      "parameters": {
+        "logos_square": {
+          "type": "array",
+          "description": "Square logo URLs or data URIs"
+        },
+        "marketing_images_landscape": {
+          "type": "array",
+          "description": "Landscape marketing images"
+        },
+        "marketing_images_square": {
+          "type": "array",
+          "description": "Square marketing images"
+        },
+        "logos_landscape": {
+          "type": "array",
+          "description": "Landscape logos"
+        },
+        "marketing_images_portrait": {
+          "type": "array",
+          "description": "Portrait marketing images"
+        }
+      },
+      "required": [
+        "logos_square",
+        "marketing_images_landscape",
+        "marketing_images_square"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "logos_square": {
+            "type": "array",
+            "description": "Square logo URLs or data URIs"
+          },
+          "marketing_images_landscape": {
+            "type": "array",
+            "description": "Landscape marketing images"
+          },
+          "marketing_images_square": {
+            "type": "array",
+            "description": "Square marketing images"
+          },
+          "logos_landscape": {
+            "type": "array",
+            "description": "Landscape logos"
+          },
+          "marketing_images_portrait": {
+            "type": "array",
+            "description": "Portrait marketing images"
+          }
+        },
+        "required": [
+          "logos_square",
+          "marketing_images_landscape",
+          "marketing_images_square"
+        ],
+        "additionalProperties": true
+      }
     },
     {
       "name": "validate_video",
-      "description": "Validate a YouTube video id/URL for PMax (or note TikTok constraints).",
+      "description": "Validate a YouTube video id/URL for PMax.",
       "expose": "router",
       "read_only": true,
       "destructive": false,
-      "advanced": true
+      "advanced": true,
+      "parameters": {
+        "video_url_or_id": {
+          "type": "string",
+          "description": "YouTube URL or 11-char video id"
+        },
+        "platform": {
+          "type": "string",
+          "description": "pmax (YouTube / advanced video paths)"
+        }
+      },
+      "required": [
+        "video_url_or_id",
+        "platform"
+      ],
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "video_url_or_id": {
+            "type": "string",
+            "description": "YouTube URL or 11-char video id"
+          },
+          "platform": {
+            "type": "string",
+            "description": "pmax (YouTube / advanced video paths)"
+          }
+        },
+        "required": [
+          "video_url_or_id",
+          "platform"
+        ],
+        "additionalProperties": true
+      }
     }
   ]
 }

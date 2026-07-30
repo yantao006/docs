@@ -1,71 +1,199 @@
 ---
 title: Connect Google Ads
-description: Link a Google Ads account to AdCue from Connections so MCP and the app can use it.
+description: Discover Google Ads accounts, expand MCCs, and select a tool-ready client primary.
 ---
 
 # Connect Google Ads
 
-Link Google Ads so AdCue (website and MCP clients sharing your account) can read performance and run approved tools.
+Link Google Ads so AdCue and your authorized AI clients can read account data and run approved tools.
+
+<Note>
+A saved Google OAuth connection is not automatically tool-ready.
+AdCue needs a discovered client ad account as the primary target.
+A manager account (MCC) can organize discovery, but it is not a tool-ready primary.
+</Note>
 
 ## Before you start
 
+You need:
+
 - An [AdCue account](/create-account)
 - A Google identity with access to the Google Ads customers you manage
-- Admin or standard access on those customers (or a manager identity with **direct** access)
+- At least one client ad account, either directly accessible or directly under an accessible manager account
 
-<Note>
-Manager (MCC) identities are supported. Linked client accounts are **not** listed automatically unless the Google identity also has direct access to them.
-</Note>
+## Connect
 
-## Where to connect
+1. Open [Connections](https://adcue.app/app/connections).
+2. Choose **Connect Google Ads**.
+3. Confirm the Google identity you expect to use.
+4. Continue to Google's consent screen and select that identity.
+5. Approve the Google Ads scope (`https://www.googleapis.com/auth/adwords`).
+6. Return to Connections and review the discovered accounts.
+7. If the account picker opens, choose a client ad account and select **Activate**.
 
-Open **Connections** in the app shell:
+When discovery finds exactly one client account, AdCue selects it automatically.
+When discovery finds multiple clients and no valid client primary already exists, you must choose one.
 
-[https://adcue.app/app/connections](https://adcue.app/app/connections)
+AdCue website sessions and authorized AI clients share the same stored Google Ads connection.
+You do not repeat Google Ads OAuth for each AI client.
 
-You can also start connection flows from Setup or product prompts that deep-link to Connections.
+## How account discovery works
 
-## How to connect
+After OAuth, AdCue:
 
-1. Sign in to AdCue and open [Connections](https://adcue.app/app/connections).
-2. Choose **Connect Google Ads**. Confirm the read-only email hint (expected identity, not a password field).
-3. Select **Connect**. On Google’s consent screen, pick the identity that can access your ad accounts and approve the **Google Ads** scope (`https://www.googleapis.com/auth/adwords`).
-4. If several directly accessible customers appear, pick a **primary** account. A single account is selected automatically.
-5. Confirm the panel shows connected status, primary account, and accessible account count.
+1. Loads the Google Ads customers directly accessible to the selected Google identity.
+2. Detects which accessible customers are manager accounts.
+3. Queries the first level of `customer_client` rows under each detected manager.
+4. Adds those discovered rows to the account picker.
+5. Separates confirmed managers from client accounts before choosing a primary.
 
-Website and MCP sessions share the **same** stored connection — you do not connect twice for each client.
+Manager expansion is one level deep.
+A nested manager can appear as a manager row, but AdCue does not present it as a tool-ready client.
 
-## What AdCue can and cannot do
+OAuth can succeed even when account discovery cannot run.
+For example, discovery also requires the Google Ads API to be enabled on the OAuth client's Google Cloud project and a valid developer token.
+When discovery fails, AdCue keeps the saved authorization where possible and shows **Needs attention** rather than reporting a false active state.
 
-| Can | Cannot without you |
-|-----|--------------------|
-| Read campaign structure and metrics you authorize | Spend budget on its own |
-| Create or change entities **only** when you approve a write tool | Access Gmail, Drive, Calendar, or non-Ads Google data |
-| Pause / resume / remove when tools are invoked with confirmation | Bypass destructive confirm flags |
+## Manager and client roles
 
-Creates still land **PAUSED**. See [Safety model](/mcp/safety).
+| Account role | What it does in AdCue | Tool-ready primary? |
+| --- | --- | --- |
+| Manager (MCC) | Groups accounts and can be expanded to reveal discovered direct sub-accounts | No |
+| Client | Represents the advertising customer that reports and tools target | Yes, when selected as primary and discovery has no blocking error |
+| Nested manager | Appears as a manager when returned under another MCC | No |
 
-## After connecting
+In the account picker, use the chevron beside an MCC to view its discovered direct sub-accounts.
+A child row can include its descriptive name, customer ID, currency, and time zone when Google returns that metadata.
 
-- List accounts and campaigns from an AI client or future product surfaces
-- Reconnect with another Google identity if you picked the wrong one
-- **Refresh accounts** from the connection panel after infrastructure fixes (no full OAuth required when refresh tokens remain valid)
-- Disconnect at any time from Connections / Settings
+If an expanded manager shows **No sub-accounts found**, the latest discovery returned no direct rows for that manager.
+This does not turn the manager into a client account.
+Check the Google Ads account links and permissions, then use **Refresh accounts**.
+
+## How AdCue chooses the primary account
+
+The primary is the default Google Ads customer used by reports and tools.
+AdCue applies these rules after connect and refresh:
+
+| Discovered state | Primary behavior | Readiness |
+| --- | --- | --- |
+| One client | Selects that client automatically | Tool-ready if OAuth and discovery are healthy |
+| Multiple clients with an existing valid client primary | Preserves that client | Tool-ready if OAuth and discovery are healthy |
+| Multiple clients without a valid client primary | Requires an explicit choice | Needs attention until a client is activated |
+| Managers plus clients | Keeps managers expandable and requires a client primary | A manager selection is blocked while clients are available |
+| Manager accounts only | May keep a manager as a discovery fallback | Needs attention because tools still require a client |
+| No accounts | Keeps the connection linked when authorization was saved | Needs attention until discovery finds an account |
+| Discovery error | Keeps saved authorization where possible | Needs attention until refresh or reconnect succeeds |
+
+The connection is **Active** only when OAuth is valid, discovery has no blocking error, and a non-manager client is primary.
+An MCC-only or MCC-primary connection remains linked but is not tool-ready.
+
+## Switch the active client
+
+Use **Switch Active** when more than one account is available or when you need to replace an MCC primary with a client.
+
+1. Open [Connections](https://adcue.app/app/connections).
+2. Choose **Switch Active** on the Google Ads connection.
+3. Search by customer ID, or expand an MCC with its chevron.
+4. Select the intended client row.
+5. Choose **Activate**.
+
+The **Primary** label marks the current selection.
+When client accounts are available, manager rows cannot be activated.
+AdCue also rejects a manager selection on the server so tools cannot silently target the umbrella MCC.
+
+If there is exactly one discovered client, AdCue activates it automatically and **Switch Active** might not be shown.
+
+## Refresh accounts
+
+Refresh reruns account discovery and MCC expansion using the stored Google authorization.
+It also updates the known manager and client lists.
+A still-valid client primary is preserved.
+If only one client remains, AdCue selects it automatically.
+If multiple clients remain and the previous primary is no longer valid, AdCue asks you to choose again.
+
+To refresh:
+
+1. Open [Connections](https://adcue.app/app/connections).
+2. Expand **Details** on the Google Ads connection.
+3. Choose **Refresh accounts**.
+4. Review the readiness status and use **Switch Active** if a client choice is required.
+
+Use **Refresh accounts** when:
+
+- A client was added, removed, or relinked under an MCC
+- Google Ads access changed for the connected identity
+- Discovery was empty or degraded
+- A Google Ads API configuration issue was fixed
+- The active client no longer appears
+
+You normally do not repeat OAuth while the refresh token remains valid.
+If AdCue reports expired authorization or a token refresh failure, use **Reconnect** instead.
+
+## Readiness states
+
+| Status in AdCue | Meaning | Next action |
+| --- | --- | --- |
+| Active | A client primary is selected and the connection is tool-ready | No action required |
+| Choose a primary account | Clients exist but no valid primary is selected | Use **Switch Active** |
+| Active account is MCC | A manager is primary while a client is available | Switch to a client |
+| Manager (MCC) only | Only confirmed manager accounts were discovered | Link or expose a client account, then refresh |
+| No accessible accounts | OAuth is linked but discovery found no accounts | Check access, then refresh |
+| OAuth needs attention | Discovery returned a blocking error | Follow the visible error and refresh |
+| OAuth expired | The stored authorization can no longer refresh access | Reconnect Google Ads |
+
+## What the authorization allows
+
+| AdCue can | AdCue cannot without your action |
+| --- | --- |
+| Read authorized Google Ads structure and metrics | Access Gmail, Drive, Calendar, or unrelated Google data |
+| Run a write tool after client approval | Silently choose a different customer when an ID is invalid |
+| Create supported entities in a paused state | Enable a new campaign without an explicit follow-up action |
+| Remove supported entities only with confirmation | Bypass destructive confirmation flags |
+
+See the [Safety model](/mcp/safety).
 
 ## Troubleshooting
 
-| Problem | What to try |
-|---------|-------------|
-| No accounts found | Reconnect with the Google identity that owns or has direct access to the customer |
-| Access denied | Ask the account owner for admin/standard access in Google Ads |
-| Connected but discovery empty | Use **Refresh accounts**; ensure Google Ads API access is healthy on AdCue’s side (support can check service status) |
-| Consent screen does not open | Allow pop-ups; retry Connect; try another browser |
-| Wrong primary account | Select another primary from the connection panel |
+### OAuth succeeded, but no accounts appeared
 
-Still stuck? Email [support@adcue.app](mailto:support@adcue.app) with the step that failed (do not send tokens or secrets).
+OAuth success only confirms that Google authorization was saved.
+It does not prove that Google Ads account discovery succeeded.
+
+Confirm that the selected Google identity can access a production Google Ads customer, then open **Details** and choose **Refresh accounts**.
+Test-only access might not produce the expected production account list.
+
+### The error mentions `SERVICE_DISABLED`
+
+The Google Ads API must be enabled on the Google Cloud project that owns the AdCue OAuth client.
+Your authorization may still be saved.
+Contact [support@adcue.app](mailto:support@adcue.app) with the visible error text.
+After an operator enables `googleads.googleapis.com` on that project, use **Refresh accounts**.
+
+### An MCC appears, but its clients do not
+
+Expand the MCC and confirm whether the picker shows **No sub-accounts found**.
+AdCue loads direct `customer_client` rows for the detected manager, not every level of a nested hierarchy.
+Verify the direct account links and permissions in Google Ads, then refresh.
+
+### The wrong account is active
+
+Use **Switch Active** and activate the intended client account.
+An MCC is not tool-ready even if it remains stored as a fallback in an MCC-only state.
+
+### Refresh reports an authorization error
+
+If the status says **OAuth expired** or mentions a token refresh failure, use **Reconnect**.
+For other discovery errors, the authorization may still be saved, so follow the visible message and retry **Refresh accounts**.
+
+### The consent screen does not open
+
+Allow pop-ups, retry **Connect Google Ads**, or use another browser.
+
+If the problem continues, email [support@adcue.app](mailto:support@adcue.app) with the visible error text.
+Never send access tokens, refresh tokens, client secrets, or developer tokens.
 
 ## Next
 
-- [Connect an AI client](/connect/mcp-setup)
-- [How MCP works](/mcp/overview)
-- [Quickstart](/quickstart)
+- [Manage API keys](/connect/api-keys)
+- [Set up ChatGPT](/ai-clients/chatgpt)
+- [AI clients overview](/ai-clients/overview)

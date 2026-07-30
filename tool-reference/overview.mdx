@@ -1,0 +1,84 @@
+---
+title: Tool Reference overview
+description: MCP tool reference for AdCue — schema-backed docs, no public REST Ads API.
+---
+
+# Tool Reference overview
+
+AdCue documents Google Ads operations as **MCP tools**, not as a public REST Ads API.
+
+There is **no** public REST base URL, versioned OpenAPI product contract, or SLA for a standalone HTTP Ads API in this documentation.
+Connect AI clients to the production MCP endpoint and call tools by name (or via the `google_ads` router).
+
+## Endpoint
+
+```text
+https://mcp.adcue.app/mcp
+```
+
+## What this section covers
+
+| Page | Contents |
+| --- | --- |
+| [Discovery & accounts](/tool-reference/discovery) | Top-level and dual-exposure tools (schema-backed) |
+| [Search core](/tool-reference/search-core) | First-batch high-traffic Search / account tools |
+| [Advanced tools](/tool-reference/advanced) | Registry `advanced: true` index (PMax / YouTube / Demand Gen) |
+| [Tool catalog](/mcp/tools) | Full generated list of all registry tools |
+
+## How to call tools
+
+**Top-level** tools (for example `search_tools`, `get_connections_status`) are called by name.
+
+**Router** tools use `google_ads`:
+
+```json
+{
+  "action": "list_tools"
+}
+```
+
+```json
+{
+  "action": "execute",
+  "tool_name": "list_campaigns",
+  "arguments": { "customer_id": "1234567890" }
+}
+```
+
+Some tools are available as **both** top-level and router (`expose: both`).
+
+## Safety (always)
+
+- Creates land **PAUSED** where the product applies that rule.
+- Destructive deletes require `confirm_delete: true`.
+- Budget fields that are skill-facing use **dollars** (decimal), not micros.
+- Prefer **Search-first** workflows; treat advanced campaign types as optional.
+- **Runtime truth** is live `list_tools` / `get_tool_schema` for your session — the static catalog can lag a deploy.
+
+Full detail: [Safety model](/mcp/safety).
+
+## Schema source
+
+Per-tool pages are **generated** from `docs-site/generated/tools.json` (export of `TOOL_SPECS`).
+Do not hand-edit parameter tables on generated pages.
+
+Regenerate from a local `google-ads-mcp` checkout:
+
+```bash
+npm run docs:export-tools -- --mcp-root /path/to/google-ads-mcp
+npm run docs:generate-tools-mdx
+npm run docs:generate-tool-reference
+npm run docs:check-tools
+```
+
+## Out of scope
+
+- Meta, TikTok, LinkedIn, or other non-Google platform tools
+- Public REST Ads API base URLs or SLA claims
+- Full individual pages for every router tool (later batches expand Search and other groups)
+
+## Related
+
+- [How MCP works](/mcp/overview)
+- [Connect Google Ads](/connect/google-ads)
+- [API keys](/connect/api-keys)

@@ -54,19 +54,25 @@ docs-site/
 │   ├── google-ads.mdx
 │   └── mcp-setup.mdx
 ├── product/
-│   └── usage-billing.mdx  # Outline until Creem UX freezes (Doc-D4)
+│   └── usage-billing.mdx  # Creem-backed plan and usage guide
 ├── mcp/
 │   ├── overview.mdx
 │   ├── tools.mdx          # Generated from tools.json
 │   └── safety.mdx
+├── tool-reference/
+│   ├── overview.mdx       # Hand-authored MCP semantics framing
+│   ├── discovery.mdx      # Generated top/both index
+│   ├── search-core.mdx    # Generated Search core batch index
+│   ├── advanced.mdx       # Generated advanced index
+│   └── tools/*.mdx        # Generated schema-backed tool pages
 ├── knowledge/
 │   ├── faq.mdx
 │   ├── security.mdx
-│   └── pricing.mdx        # Outline until plan matrix freezes
+│   └── pricing.mdx        # Published three-tier plan matrix
 ├── logo/                  # Brand SVG copies for Mintlify
 ├── images/                # Screenshots (later)
 ├── generated/
-│   └── tools.json         # Registry export (S1)
+│   └── tools.json         # Registry export (parameters + schema)
 └── README.md
 ```
 
@@ -75,6 +81,7 @@ Regenerate the catalog from a local `google-ads-mcp` checkout:
 ```bash
 npm run docs:export-tools -- --mcp-root /path/to/google-ads-mcp
 npm run docs:generate-tools-mdx
+npm run docs:generate-tool-reference
 npm run docs:check-tools
 ```
 

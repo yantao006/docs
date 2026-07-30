@@ -1,0 +1,102 @@
+---
+title: ChatGPT
+description: Connect the private-beta AdCue connector in ChatGPT and verify it with a read-only Google Ads prompt.
+---
+
+# ChatGPT
+
+Use AdCue in ChatGPT through the official invitation or connector listing provided for your entitled AdCue account.
+Private-beta access is staggered, so the connector is **not automatically available to every account**.
+
+<Warning>
+This page does not require an AdCue API key.
+Do not paste a key into ChatGPT, a chat message, or the official connector flow.
+</Warning>
+
+## Before you start
+
+Complete these prerequisites in order:
+
+1. [Create your AdCue account](/create-account).
+2. [Connect Google Ads](/connect/google-ads) and select a client ad account as primary.
+3. Confirm that your AdCue account has received the private-beta invitation or can open the AdCue connector listing in ChatGPT.
+
+If you have not received access, stop at step 3.
+An AdCue login by itself does not grant ChatGPT entitlement.
+
+## Two separate authorizations
+
+| Authorization | Purpose | Where it happens |
+| --- | --- | --- |
+| AdCue OAuth | Identifies the AdCue user ChatGPT is acting for | The ChatGPT connector authorization flow |
+| Google Ads OAuth | Grants AdCue the Google Ads scope for accounts you can access | [AdCue Connections](https://adcue.app/app/connections) |
+
+Signing in to AdCue does not authorize Google Ads.
+Connecting Google Ads does not grant ChatGPT private-beta access.
+Use the same AdCue account in the app and the ChatGPT connector so the connector can use the connection you prepared.
+
+## Connect ChatGPT
+
+1. Open the invitation or AdCue connector listing provided for your account.
+2. Do not reuse another user's invitation.
+3. Choose the connect or authorize action shown by ChatGPT.
+4. Complete AdCue OAuth with the same account you use at [adcue.app/app](https://adcue.app/app).
+5. Return to ChatGPT and confirm that the connector finishes loading AdCue tools.
+
+The official connector uses the production MCP endpoint after authorization:
+
+```text
+https://mcp.adcue.app/mcp
+```
+
+You normally do not paste this URL or an API key into ChatGPT.
+
+## Verify with a read
+
+Ask:
+
+```text
+Check my Google Ads connection status. Do not make any changes.
+```
+
+The first call should be `get_connections_status`.
+A healthy result should identify the connected Google Ads state without changing the account.
+
+Next, ask:
+
+```text
+List my connected Google Ads accounts. Do not make any changes.
+```
+
+This uses `list_connected_accounts` and helps confirm that the active account is a client, not a manager account.
+Only after both reads work should you ask for campaign data or consider a write.
+
+## If an MCC is connected
+
+ChatGPT tools need a **client ad account** as the primary target.
+A manager account can organize and reveal its direct sub-accounts, but the manager itself is not a tool-ready primary.
+
+Open [Connections](https://adcue.app/app/connections), choose **Switch Active**, expand the manager if needed, and activate a client account.
+Then retry the read prompt.
+
+## Troubleshooting
+
+| Problem | What to do |
+| --- | --- |
+| No invitation or listing | Your ChatGPT entitlement may not be active yet; private-beta invitations are staggered |
+| Connector opens under the wrong user | Sign out of the connector flow and authorize with the AdCue account that owns the Google Ads connection |
+| Google Ads is not connected | Complete the separate [Google Ads OAuth flow](/connect/google-ads) |
+| Manager account is selected | Use **Switch Active** and choose a client ad account |
+| Tools do not appear after OAuth | Reopen the entitled listing, re-authorize AdCue, and retry the read prompt |
+| Authorization still fails | Contact [support@adcue.app](mailto:support@adcue.app) with the error text, but never send tokens or secrets |
+
+## Before a write
+
+Read the [Safety model](/mcp/safety).
+AdCue creates new entities in **PAUSED** state, destructive removes require confirmation, and your client should ask before mutations.
+
+## Next
+
+- [Capabilities](/knowledge/capabilities)
+- [Tool catalog](/mcp/tools)
+- [FAQ](/knowledge/faq)

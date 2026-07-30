@@ -1,0 +1,76 @@
+---
+title: Capabilities
+description: What AdCue supports today, what stays Search-first, and how to verify tools at runtime.
+---
+
+# Capabilities
+
+AdCue operates **Google Ads only** today.
+Its primary path is Google Search, from account inspection through a paused campaign that you review before enabling.
+
+## What you can do
+
+| Capability | Current scope |
+| --- | --- |
+| Connect accounts | Link Google Ads, expand direct client accounts under manager accounts, and choose a client primary |
+| Read and diagnose | Inspect connection health, accounts, campaigns, structure, performance, search terms, and conversion tracking |
+| Plan Search campaigns | Research keywords, resolve locations, review existing assets, and draft responsive search ads |
+| Create and manage Search | Create paused Search campaigns, add extensions, manage keywords and ads, and update budgets or bids with approval |
+| Optimize | Find wasted spend, analyze search terms, and propose budget changes before applying them |
+| Use AI clients | Call the same AdCue tool surface from entitled ChatGPT accounts and other clients covered by in-app Setup |
+
+<Note>
+Google Search is the primary, end-to-end workflow.
+New campaigns and ads created through AdCue land **PAUSED** so you can inspect them before they spend.
+</Note>
+
+## Read first
+
+Start by confirming the account and current state:
+
+1. Run `get_connections_status` or `list_connected_accounts`.
+2. Run `list_campaigns` for the selected client account.
+3. Inspect structure, performance, and conversion tracking before proposing a change.
+4. Approve a write only after its target and expected effect are clear.
+
+See the [Quickstart](/quickstart) for the ChatGPT activation path and the [Safety model](/mcp/safety) for write rules.
+
+## Advanced Google Ads tools
+
+The generated catalog currently marks **12 tools** for Performance Max, YouTube, and Demand Gen as advanced.
+They remain visible in the [Tool catalog](/mcp/tools), but visibility in the docs is not a promise that every deployment or account can run every advanced path.
+
+The live router is the runtime source of truth:
+
+```json
+{ "action": "list_tools" }
+```
+
+Use only exact tool names and schemas returned by the live `google_ads` call.
+If an advanced create tool is absent, treat it as unavailable and stay on the Search path rather than guessing a tool name.
+
+## Not available as shipped capabilities
+
+- Advertising platforms other than Google Ads
+- A public advertising REST API
+- AdCue-hosted server-side monitoring or scheduled campaign operations
+- Automatic writes without user approval
+
+Host-side scheduling offered by an AI client is separate from AdCue product monitoring.
+It does not expand the MCP tool surface or authorize unattended writes.
+
+## Capability checks
+
+| Question | Source of truth |
+| --- | --- |
+| Which tools can this session call? | Live `google_ads` with `action: "list_tools"` |
+| What parameters does a tool accept? | `get_tool_schema` |
+| Which account will tools target? | `get_connections_status` and the client primary on Connections |
+| Is a tool read-only or destructive? | Live schema and the registry-backed [Tool catalog](/mcp/tools) |
+| What happens on create or remove? | [Safety model](/mcp/safety) |
+
+## Next
+
+- [Connect Google Ads](/connect/google-ads)
+- [Set up ChatGPT](/ai-clients/chatgpt)
+- [How MCP works](/mcp/overview)

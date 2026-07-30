@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "AdCue Docs",
-  "description": "Documentation for AdCue — AI advertising audit, optimization, and MCP for Google Ads.",
+  "description": "Documentation for AdCue - AI advertising audit, optimization, and MCP for Google Ads.",
   "colors": {
     "primary": "#070B24",
     "light": "#2F6F5E",
@@ -36,6 +36,17 @@
       "website": "https://adcue.app"
     }
   },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
   "navigation": {
     "groups": [
       {
@@ -43,24 +54,26 @@
         "pages": [
           "introduction",
           "quickstart",
-          "create-account"
+          "create-account",
+          "knowledge/capabilities"
         ]
       },
       {
         "group": "Connect",
         "pages": [
           "connect/google-ads",
-          "connect/mcp-setup"
+          "connect/api-keys"
         ]
       },
       {
-        "group": "Product",
+        "group": "AI clients",
         "pages": [
-          "product/usage-billing"
+          "ai-clients/overview",
+          "ai-clients/chatgpt"
         ]
       },
       {
-        "group": "MCP & tools",
+        "group": "MCP & Skills",
         "pages": [
           "mcp/overview",
           "mcp/tools",
@@ -68,10 +81,20 @@
         ]
       },
       {
+        "group": "Tool Reference",
+        "pages": [
+          "tool-reference/overview",
+          "tool-reference/discovery",
+          "tool-reference/search-core",
+          "tool-reference/advanced"
+        ]
+      },
+      {
         "group": "Knowledge",
         "pages": [
-          "knowledge/security",
           "knowledge/pricing",
+          "product/usage-billing",
+          "knowledge/security",
           "knowledge/faq"
         ]
       }

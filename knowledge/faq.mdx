@@ -1,94 +1,161 @@
 ---
 title: FAQ
-description: Frequently asked questions about AdCue accounts, Google Ads, MCP, and billing.
+description: Frequently asked questions about AdCue, Google Ads, ChatGPT, MCP, and account safety.
 ---
 
 # FAQ
 
-## Account & platforms
+## Account and platforms
 
 ### How do I create an account?
 
-Open [adcue.app](https://adcue.app), sign in with **Auth0**, and continue to [adcue.app/app](https://adcue.app/app). See [Create account](/create-account).
+Open [adcue.app](https://adcue.app), sign in through Auth0, and continue to [adcue.app/app](https://adcue.app/app).
+See [Create account](/create-account).
 
-### Which ad platforms does AdCue support today?
+### Which advertising platforms does AdCue support today?
 
-**Google Ads** via the product shell and MCP.
-
-Meta, TikTok, Amazon, LinkedIn, and other platforms are **not** available as documented features. There is no Meta connect guide and no Meta tool catalog on this site.
+**Google Ads only.**
+Other advertising platforms are not available as documented product capabilities.
+See [Capabilities](/knowledge/capabilities).
 
 ### Can I use AdCue without connecting Google Ads?
 
-You can sign in and explore the shell, but analysis and MCP data tools need a connected Google Ads account.
+You can sign in and view the app shell, but Google Ads analysis and campaign tools need a connected, tool-ready client account.
 
-### Can I connect multiple Google Ads customers?
-
-Yes, when your Google identity has direct access to multiple customers. Pick a **primary** account on [Connections](https://adcue.app/app/connections). Plan limits for concurrent usage may apply — see [Pricing](/knowledge/pricing) (outline).
-
-## Google Ads connection
+## Google Ads connection and MCCs
 
 ### How do I connect Google Ads?
 
-Use [adcue.app/app/connections](https://adcue.app/app/connections). Full steps: [Connect Google Ads](/connect/google-ads).
+Use [adcue.app/app/connections](https://adcue.app/app/connections).
+The Google Ads OAuth consent is separate from AdCue sign-in.
+See [Connect Google Ads](/connect/google-ads).
 
-### Why does AdCue not list all MCC child accounts?
+### Does AdCue support manager accounts (MCCs)?
 
-`listAccessibleCustomers` returns customers the Google identity can access **directly**. Manager links alone do not auto-expand every linked client.
+Yes, for discovery and account organization.
+AdCue detects accessible manager accounts and expands each manager's direct `customer_client` rows into the account picker.
 
-### Will AdCue change my campaigns without asking?
+The manager itself is not a tool-ready primary.
+Expand the MCC in **Switch Active** and choose a client ad account.
 
-No. Writes go through tools that require client approval. Creates land **PAUSED**. Destructive removes need `confirm_delete: true`. See [Safety model](/mcp/safety).
+### Why do I see an MCC but not its client accounts?
 
-## MCP & AI clients
+Open **Switch Active** and expand the manager first.
+If it shows **No sub-accounts found**, confirm that the client is directly linked under that MCC and that the connected Google identity has the required access.
+Then use **Refresh accounts** on Connections.
+
+### What does Refresh accounts do?
+
+It reruns account discovery and MCC expansion using the stored Google Ads authorization.
+It is useful after account links, access, or Google Ads API configuration changes.
+You normally need to reconnect only if the authorization has expired.
+
+### How is the primary account selected?
+
+AdCue automatically selects the only discovered client account.
+When multiple clients are available, choose one through **Switch Active**.
+When clients exist, AdCue blocks a manager account from becoming active because tools need a client target.
+
+### Can I connect multiple Google Ads customers?
+
+AdCue can discover multiple clients available to the connected identity, including direct clients expanded from an MCC.
+Your current plan controls how many accounts can be active.
+Connections shows which client is primary for tool calls.
+
+### Will AdCue change campaigns without asking?
+
+Writes go through tools that your client should ask you to approve.
+Creates land **PAUSED**, and destructive removes require `confirm_delete: true`.
+See [Safety model](/mcp/safety).
+
+## ChatGPT and other AI clients
+
+### Is ChatGPT available to every AdCue account?
+
+No.
+ChatGPT access is a staggered private beta delivered through an invitation or connector listing for entitled accounts.
+An AdCue account alone does not make the connector instantly available.
+See [ChatGPT setup](/ai-clients/chatgpt).
+
+### Does the ChatGPT path require an API key?
+
+No.
+The official ChatGPT connector uses AdCue OAuth, plus the separate Google Ads OAuth connection you create on the AdCue website.
+Do not paste an API key into ChatGPT for this path.
+
+### Which AI client guides are present in the app?
+
+The authenticated [Setup](https://adcue.app/app/setup) page currently lists:
+
+1. ChatGPT
+2. Claude Cowork
+3. Claude Code
+4. Cursor
+5. OpenClaw
+6. Codex
+7. Claude
+8. Manus
+9. Windsurf
+10. Gemini CLI
+
+These entries reflect the current product Setup source.
+ChatGPT is the first dedicated client guide in these docs, and its entitlement rules differ from generic remote MCP setup.
 
 ### What is MCP?
 
-**Model Context Protocol** — a standard way for AI clients to call tools. AdCue’s endpoint is `https://mcp.adcue.app/mcp`. Overview: [How MCP works](/mcp/overview).
+Model Context Protocol is a standard way for AI clients to call tools.
+AdCue's production endpoint is `https://mcp.adcue.app/mcp`.
+See [How MCP works](/mcp/overview).
 
-### Which clients are supported?
+### Do I need MCP to use the AdCue app?
 
-First-wave guidance covers **ChatGPT**, **Claude**, and **Cursor**. Other MCP-compatible tools can use the same remote URL. Setup: [Connect an AI client](/connect/mcp-setup).
+No.
+The website remains the place for account connections, setup, usage, billing, and settings.
+AI clients use MCP to call the Google Ads tool surface.
 
-### Do I need MCP to use AdCue?
+### How many tools are available?
 
-No. MCP is the agent / developer path. The website shell at `/app` remains available for connections, setup, billing, and settings.
-
-### How many tools are there?
-
-Use the live [tool catalog](/mcp/tools), which is generated from the V2 registry. Do not rely on third-party or legacy counts from old marketing pages.
+The [Tool catalog](/mcp/tools) is generated from the current registry export.
+For a live session, the runtime `google_ads` response to `action: "list_tools"` is authoritative, especially for advanced tools.
+Do not rely on old third-party counts.
 
 ### My client cannot see AdCue tools
 
-1. Confirm the server URL is exactly `https://mcp.adcue.app/mcp`
-2. Re-authenticate the client
-3. Confirm Google Ads is connected on the website
-4. Reload MCP servers in the client
-5. Email [support@adcue.app](mailto:support@adcue.app) with the client name and error text (no tokens)
+1. Confirm that the chosen client path is available to your AdCue account.
+2. Re-authenticate the client as the same AdCue user that owns the Google Ads connection.
+3. Confirm that Connections has a client ad account as primary.
+4. Reload the connector or MCP server in the client.
+5. Email [support@adcue.app](mailto:support@adcue.app) with the client name and visible error text, but no tokens.
 
-## Billing & plans
+## Billing and plans
 
 ### How does billing work?
 
-Product billing uses **Creem** (not Stripe). Manage upgrades from [Usage & Billing](https://adcue.app/app) when checkout is enabled for your environment.
+AdCue billing uses **Creem**, not Stripe.
+The app shows checkout availability and webhook-synced subscription state on [Usage & Billing](https://adcue.app/app).
+If checkout is unavailable, AdCue fails closed rather than reporting paid or trial access as successful.
+See [Pricing](/knowledge/pricing) and [Usage & Billing](/product/usage-billing).
 
-Outline pages: [Usage & Billing](/product/usage-billing) · [Pricing](/knowledge/pricing).
+### Where do I cancel or update payment details?
 
-### Where do I cancel or update payment?
+Open the Creem customer portal from Usage & Billing when a Creem-backed subscription is active.
 
-From the app Usage & Billing surface, open the Creem customer portal when your subscription is active. Full step-by-step screenshots ship after the billing UX freezes.
-
-## Data & security
+## Data and security
 
 ### Is my advertising data safe?
 
-Credentials are encrypted at rest; traffic uses TLS. Ads OAuth is scoped to Google Ads. Details: [Security](/knowledge/security).
+Google Ads tokens are encrypted at rest and traffic uses TLS.
+The Ads OAuth scope does not include Gmail, Drive, Calendar, or unrelated Google data.
+See [Security](/knowledge/security).
 
 ### Can I delete my account?
 
-Yes — Settings danger zone permanently deletes the AdCue user and cascaded product data. See [Security](/knowledge/security#account-deletion).
+Yes.
+The Settings danger zone permanently deletes the AdCue user and cascaded product data.
+See [Security](/knowledge/security#account-deletion).
 
 ## Still need help?
 
 - Email [support@adcue.app](mailto:support@adcue.app)
-- Product contact: [adcue.app/contact](https://adcue.app/contact)
-- Changelog: [adcue.app/changelog](https://adcue.app/changelog)
+- Visit [adcue.app/contact](https://adcue.app/contact)
+- Read the [product changelog](https://adcue.app/changelog)

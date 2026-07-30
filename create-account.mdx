@@ -5,14 +5,17 @@ description: Sign up for AdCue with Auth0 and open the app shell.
 
 # Create account
 
-Creating an AdCue account is free and takes about a minute. Sign-in is handled by **Auth0** Universal Login (not a separate AdCue password form).
+Creating an AdCue account is free and takes about a minute.
+Sign-in is handled by **Auth0 Universal Login** through its Google social connection, not by a separate AdCue password form.
 
 ## How to sign up
 
 1. Open [adcue.app](https://adcue.app) in a modern browser (Chrome, Safari, Firefox, or Edge).
-2. Choose **Get Started** or **Sign in**.
-3. Complete Auth0 sign-in. Use a verified email; AdCue requires `email_verified: true`.
+2. Choose **Continue with Google** in the header or its first-visit prompt.
+3. Choose a verified Google account on the Auth0-secured account chooser; AdCue requires `email_verified: true`.
 4. After success, you land on the authenticated shell at [adcue.app/app](https://adcue.app/app).
+
+Use [adcue.app/login](https://adcue.app/login) for sign-in errors, account-deletion notices, or other sign-in options.
 
 That first screen is **Usage & Billing** — the home for plan status and upgrades once billing is enabled for your account.
 
@@ -26,7 +29,7 @@ Connecting ads never expands login scopes to Gmail, Drive, or unrelated Google s
 | After sign-in | Meaning |
 |---------------|---------|
 | Empty connections | Normal — connect Google Ads next |
-| Usage & Billing card | Plan and quota surface (may show free-tier limits) |
+| Usage & Billing card | Plan, trial, and tool-call quota surface |
 | Sidebar routes | Connections, Setup, Keys, Settings, Monitors (product-gated) |
 
 Canonical app routes:

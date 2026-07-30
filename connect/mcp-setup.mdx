@@ -53,16 +53,18 @@ Typical remote config shape (client-specific fields may differ):
 
 ### Auth
 
-- Complete AdCue OAuth / sign-in when the client prompts you.
-- If your plan uses API keys, create one at [adcue.app/app/keys](https://adcue.app/app/keys) and paste it only into the client’s secret field — never into chat or tickets.
+- Complete AdCue OAuth or sign-in when the client prompts you.
+- Follow the authentication path shown for your account and client.
+- Do not assume that a key created in the Keys UI is accepted by the production MCP endpoint.
 
-Claude directory / Cowork install flows may show **Install → Manage → Connectors → Connect → Authorize**. Prefer the in-app [Setup](https://adcue.app/app/setup) screenshots when available.
+Claude directory or Cowork install flows may show **Install -> Manage -> Connectors -> Connect -> Authorize**.
+Prefer the in-app [Setup](https://adcue.app/app/setup) screenshots when available.
 
 ## Cursor
 
 1. Open Cursor **Settings → MCP** (or the equivalent MCP servers panel).
 2. Add a server named `adcue` with URL `https://mcp.adcue.app/mcp`.
-3. Supply auth (OAuth or API key) as required by your account.
+3. Complete the authentication flow shown for your account.
 4. Restart MCP / reload the window if tools do not appear.
 5. Test with a read tool via the agent (list campaigns or connection status).
 
@@ -82,10 +84,11 @@ Example `mcp.json` style entry:
 
 Windsurf, Gemini CLI, Codex, and other MCP-compatible hosts follow the same pattern:
 
-1. Register `https://mcp.adcue.app/mcp` as a Streamable HTTP / remote MCP server.
-2. Authenticate as your AdCue user.
-3. Confirm tools appear (`search_tools`, `google_ads`, connection helpers).
-4. Start with **read-only** calls.
+1. Register `https://mcp.adcue.app/mcp` as a Streamable HTTP or remote MCP server.
+2. Authenticate as your AdCue user with the flow enabled for that client.
+3. Do not substitute an API key unless AdCue has explicitly enabled and documented that client path.
+4. Confirm tools appear (`search_tools`, `google_ads`, connection helpers).
+5. Start with **read-only** calls.
 
 ## First prompts that stay safe
 
@@ -99,15 +102,17 @@ Avoid create/remove tools until you have read [Safety model](/mcp/safety).
 
 ## API keys
 
-| Topic | Detail |
-|-------|--------|
-| Keys UI | [adcue.app/app/keys](https://adcue.app/app/keys) |
-| Format | `sk_live_…` personal access tokens |
-| Create | Generate on Keys; **copy once** (full secret is never shown again) |
-| Revoke | Revoke on Keys; revoked keys fail closed for MCP/API |
-| Limits | Active key caps follow your plan (Free 2, higher on paid) |
+The [API keys guide](/connect/api-keys) covers creation, one-time copy, active-key quota, and revocation in the AdCue UI.
 
-Treat keys like passwords. Rotate or revoke compromised keys from the Keys page. Do not commit keys to git or paste them into public issues.
+<Warning>
+A key appearing as active in the Keys UI does not prove that the production MCP endpoint accepts `sk_live_` Bearer authentication.
+This guide does not publish an API-key connection path until production MCP has been verified with a successful key request and an unauthenticated rejection.
+Use the OAuth or sign-in flow documented for your client unless AdCue explicitly enables another path.
+</Warning>
+
+Treat keys like passwords.
+Revoke compromised keys from [adcue.app/app/keys](https://adcue.app/app/keys).
+Do not commit keys to git or paste them into chats, tickets, or public issues.
 
 ## Troubleshooting
 

@@ -1,46 +1,42 @@
 ---
 title: Usage & Billing
-description: Outline of AdCue Usage & Billing in the app shell (Creem-backed).
+description: Manage AdCue plans, trials, tool-call usage, and Creem billing.
 ---
 
 # Usage & Billing
 
-<Note>
-**Outline (Doc-D4).** Full step-by-step billing how-tos and screenshots ship after the Creem-backed product UX is frozen. This page describes what exists and where to click without inventing unfinished flows.
-</Note>
-
-## Where it lives
-
-Authenticated home:
-
-[https://adcue.app/app](https://adcue.app/app)
-
-The app shell’s primary home is **Usage & Billing** — plan status, quota summary, and upgrade / manage actions when billing is configured.
+The authenticated home at [adcue.app/app](https://adcue.app/app) shows the current subscription, tool-call usage, connection health, and available plans.
 
 ## Billing vendor
 
-AdCue uses **Creem** for:
+AdCue uses **Creem** for checkout, the customer portal, and subscription lifecycle webhooks.
+AdCue does not use Stripe Checkout or Stripe Customer Portal.
 
-- Checkout (upgrade to a paid plan)
-- Customer portal (payment method, cancel, invoices as Creem provides)
-- Webhooks that sync subscription state into AdCue
+## Available plans
 
-Do **not** expect Stripe Customer Portal or Stripe Checkout links in current product docs.
+| Plan | Price | Tool calls | Trial |
+|------|-------|------------|-------|
+| Pro | $79/month | 500/month | 7 days |
+| Business | $249/month | 2,000/month | 7 days |
+| Enterprise | $799/month | 10,000/month | 7 days |
 
-## What you can do today (when enabled)
+See the complete matrix on [Pricing](/knowledge/pricing).
+
+## What you can do
 
 | Action | Entry |
-|--------|--------|
-| See current plan / status | `/app` Usage & Billing |
-| Start upgrade checkout | Upgrade controls on `/app` (Creem checkout redirect) |
-| Manage subscription | Customer portal entry when a Creem customer exists |
-| See tool / quota signals | Usage cards on `/app` and MCP `get_usage_status` |
+|--------|-------|
+| See current plan and status | Current Plan card |
+| See live tool-call usage | Tool Calls card |
+| Start a 7-day trial | Available Plans cards |
+| Switch plans | Available Plans cards |
+| Manage payment or cancellation | Creem customer portal entry |
 
-If billing environment variables or product IDs are not configured in a given deployment, checkout fails closed (no fake paid success).
+Users without an active plan have zero tool-call quota.
+The app shows a trial prompt instead of a Free plan.
 
-## Plans (pointer)
-
-High-level plan families and free-tier intent live on [Pricing](/knowledge/pricing). Exact prices, trial length, and matrix copy will be published when the commercial plan freezes.
+If billing environment variables or the requested product ID are missing, checkout fails closed.
+The UI does not claim that trial access started until Creem checkout and webhook processing succeed.
 
 ## Related product routes
 
@@ -48,11 +44,11 @@ High-level plan families and free-tier intent live on [Pricing](/knowledge/prici
 |-------|------|
 | [Connections](https://adcue.app/app/connections) | Google Ads OAuth |
 | [Setup](https://adcue.app/app/setup) | AI client guides |
-| [Keys](https://adcue.app/app/keys) | Agent API keys (`sk_live_`) — create, copy once, revoke |
-| [Settings](https://adcue.app/app/settings) | Profile, sign out, account deletion |
+| [Keys](https://adcue.app/app/keys) | Create, copy once, and revoke agent API keys |
+| [Settings](https://adcue.app/app/settings) | Profile, sign out, and account deletion |
 
 ## Next
 
 - [Pricing](/knowledge/pricing)
-- [FAQ — billing](/knowledge/faq#billing--plans)
+- [FAQ](/knowledge/faq#billing--plans)
 - [Security](/knowledge/security)
